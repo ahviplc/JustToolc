@@ -9,10 +9,42 @@
     <!--定义版本号-->
     <!--<version>1.0-SNAPSHOT</version>-->
     <version>0.1</version>
+    <name>JustToolc</name>
     <description>my Java Tools For You By LC</description>
+    <url>https://github.com/ahviplc/JustToolc</url>
 
     <properties>
+        <!--编码配置统一为utf-8-->
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+
         <!--使用maven打包跳过test-->
         <skipTests>true</skipTests>
+        <junit.version>4.13</junit.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
+
+    <dependencies>
+        <!-- 全局单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--Lombok项目是一个Java库，它会自动插入编辑器和构建工具中，Lombok提供了一组有用的注释，用来消除Java类中的大量样板代码-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <name>LC</name>
+            <email>ahlc@sina.cn</email>
+        </developer>
+    </developers>
 </project>
