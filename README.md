@@ -33,14 +33,14 @@ maven生成javadoc文档
 ```xml
 <!--全局使用-->
 <dependency>
-    <groupId>org.lc</groupId>
+    <groupId>com.lc</groupId>
     <artifactId>\JustToolc</artifactId>
     <version>0.1</version>
 </dependency>
 
 <!--使用范围只在test-->
 <dependency>
-    <groupId>org.lc</groupId>
+    <groupId>com.lc</groupId>
     <artifactId>\JustToolc</artifactId>
     <version>0.1</version>
     <scope>test</scope>
