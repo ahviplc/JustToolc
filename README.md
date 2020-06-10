@@ -26,8 +26,23 @@ maven安装命令
 maven发布命令 
 > mvn deploy
 
-maven生成javadoc文档  
+maven生成javadoc文档 
 > mvn javadoc:javadoc
+
+maven生成source.jar 
+> mvn source:jar
+
+maven清理安装并生成source.jar 
+> mvn clean install source:jar -Dmaven.test.skip=true -Dmaven.javadoc.skip=false
+
+JustToolc的maven一行命令生成 
+>  mvn -T 1C clean source:jar javadoc:javadoc install -Dmaven.test.skip=true -Dmaven.javadoc.skip=false
+
+```markdown
+上面的一行命令代表:清理安装并生成source.jar 生成javadoc 跳过test的junit单元测试 不跳过javadoc文档生成
+-Dmaven.test.skip=true 跳过test的junit单元测试
+-Dmaven.javadoc.skip=false 不跳过javadoc文档生成
+```
 
 ## maven项目使用
 ```xml
