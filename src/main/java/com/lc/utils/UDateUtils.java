@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author LC
  */
-public class DateUtils {
+public class UDateUtils {
 
     /**
      * @return 默认到毫秒ms

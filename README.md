@@ -6,7 +6,7 @@ ahviplc/JustToolc
 
 ## slogan
 ```markdown
-❤JustToolc > Java Tools For You ❤
+❤JustToolc > Java Tools For U (You) ❤
 ```
 
 ## maven命令操作

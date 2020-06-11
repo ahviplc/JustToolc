@@ -5,7 +5,7 @@ package com.lc.utils;
  *
  * @author LC
  */
-public class StringUtils {
+public class UStringUtils {
 
     /**
      * @param oldData 原字符串数据
