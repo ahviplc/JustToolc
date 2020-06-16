@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
  * 文件工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UFileUtil {
 
@@ -53,7 +54,6 @@ public class UFileUtil {
      * 是否为Windows环境
      *
      * @return 是否为Windows环境
-     * @since 3.0.9
      */
     public static boolean isWindows() {
         return WINDOWS_SEPARATOR == File.separatorChar;
@@ -107,7 +107,7 @@ public class UFileUtil {
         // 相对于ClassPath路径
         final URL url = UResourceUtil.getResource(normalPath, baseClass);
         if (null != url) {
-            // 对于jar中文件包含file:前缀，需要去掉此类前缀，在此做标准化，since 3.0.8 解决中文或空格路径被编码的问题
+            // 对于jar中文件包含file:前缀，需要去掉此类前缀，在此做标准化, 解决中文或空格路径被编码的问题
             return UFileUtil.normalize(UURLUtil.getDecodedPath(url));
         }
 

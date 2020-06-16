@@ -8,6 +8,7 @@ import java.net.URL;
  * ClassPath资源工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UResourceUtil {
     /**

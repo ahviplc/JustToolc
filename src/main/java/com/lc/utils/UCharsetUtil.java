@@ -9,6 +9,7 @@ import java.nio.charset.UnsupportedCharsetException;
  * 字符集工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UCharsetUtil {
     /**
@@ -98,7 +99,6 @@ public class UCharsetUtil {
      * @param srcCharset  原文件的编码，必须与文件内容的编码保持一致
      * @param destCharset 转码后的编码
      * @return 被转换编码的文件
-     * @since 3.1.0
      */
     public static File convert(File file, Charset srcCharset, Charset destCharset) {
         final String str = UFileUtil.readString(file, srcCharset);
@@ -110,7 +110,6 @@ public class UCharsetUtil {
      *
      * @return 系统字符集编码
      * @see UCharsetUtil#defaultCharsetName()
-     * @since 3.1.2
      */
     public static String systemCharsetName() {
         return systemCharset().name();
@@ -121,7 +120,6 @@ public class UCharsetUtil {
      *
      * @return 系统字符集编码
      * @see UCharsetUtil#defaultCharsetName()
-     * @since 3.1.2
      */
     public static Charset systemCharset() {
         return UFileUtil.isWindows() ? CHARSET_GBK : defaultCharset();

@@ -6,6 +6,7 @@ import java.util.Iterator;
  * {@link Iterable} 和 {@link Iterator} 相关工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UIterUtil {
     /**

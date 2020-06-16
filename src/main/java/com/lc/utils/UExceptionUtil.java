@@ -4,6 +4,7 @@ package com.lc.utils;
  * 异常工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UExceptionUtil {
     private static final String NULL = "null";

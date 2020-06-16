@@ -9,6 +9,7 @@ import java.util.Iterator;
  * 数组工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UArrayUtil {
     /**
@@ -28,6 +29,268 @@ public class UArrayUtil {
     @SuppressWarnings("unchecked")
     public static <T> boolean isEmpty(final T... array) {
         return array == null || array.length == 0;
+    }
+
+    // ------------------------------------------------------------------------------------------------------------ min and max
+
+    /**
+     * 取最小值
+     *
+     * @param <T>         元素类型
+     * @param numberArray 数字数组
+     * @return 最小值
+     */
+    public static <T extends Comparable<? super T>> T min(T[] numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        T min = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (UObjectUtil.compare(min, numberArray[i]) > 0) {
+                min = numberArray[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
+     */
+    public static long min(long... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        long min = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (min > numberArray[i]) {
+                min = numberArray[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
+     */
+    public static int min(int... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        int min = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (min > numberArray[i]) {
+                min = numberArray[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
+     */
+    public static short min(short... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        short min = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (min > numberArray[i]) {
+                min = numberArray[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
+     * @see UArrayUtil#min(double...)
+     */
+    public static double min(double... numberArray) {
+        return UArrayUtil.min(numberArray);
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
+     */
+    public static float min(float... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        float min = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (min > numberArray[i]) {
+                min = numberArray[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param <T>         元素类型
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static <T extends Comparable<? super T>> T max(T[] numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        T max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (UObjectUtil.compare(max, numberArray[i]) < 0) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static long max(long... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        long max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static int max(int... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        int max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static short max(short... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        short max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static char max(char... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        char max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static byte max(byte... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        byte max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static double max(double... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        double max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     */
+    public static float max(float... numberArray) {
+        if (isEmpty(numberArray)) {
+            throw new IllegalArgumentException("Number array must not empty !");
+        }
+        float max = numberArray[0];
+        for (int i = 0; i < numberArray.length; i++) {
+            if (max < numberArray[i]) {
+                max = numberArray[i];
+            }
+        }
+        return max;
     }
 
     /**
@@ -87,11 +350,11 @@ public class UArrayUtil {
     /**
      * 以 conjunction 为分隔符将数组转换为字符串
      *
-     * @param <T> 被处理的集合
-     * @param array 数组
+     * @param <T>         被处理的集合
+     * @param array       数组
      * @param conjunction 分隔符
-     * @param prefix 每个元素添加的前缀，null表示不添加
-     * @param suffix 每个元素添加的后缀，null表示不添加
+     * @param prefix      每个元素添加的前缀，null表示不添加
+     * @param suffix      每个元素添加的后缀，null表示不添加
      * @return 连接后的字符串
      */
     public static <T> String join(T[] array, CharSequence conjunction, String prefix, String suffix) {

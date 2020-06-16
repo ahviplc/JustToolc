@@ -12,6 +12,7 @@ import java.util.List;
  * 字符串工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UStringUtil {
     public static final int INDEX_NOT_FOUND = -1;
@@ -86,6 +87,19 @@ public class UStringUtil {
         return true;
     }
 
+    /**
+     * 字符串是否为非空白 空白的定义如下： <br>
+     * 1、不为null <br>
+     * 2、不为不可见字符（如空格）<br>
+     * 3、不为""<br>
+     *
+     * @param str 被检测的字符串
+     * @return 是否为非空
+     */
+    public static boolean isNotBlank(CharSequence str) {
+        return false == isBlank(str);
+    }
+
     // ------------------------------------------------------------------------ Empty
 
     /**
@@ -98,6 +112,156 @@ public class UStringUtil {
      */
     public static boolean isEmpty(CharSequence str) {
         return str == null || str.length() == 0;
+    }
+
+    // ------------------------------------------------------------------------ Trim
+
+    /**
+     * 除去字符串头尾部的空白，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     *
+     * <p>
+     * 注意，和<code>String.trim</code>不同，此方法使用<code>NumberUtil.isBlankChar</code> 来判定空白， 因而可以除去英文字符集之外的其它空白，如中文空格。
+     *
+     * <pre>
+     * trim(null)          = null
+     * trim(&quot;&quot;)            = &quot;&quot;
+     * trim(&quot;     &quot;)       = &quot;&quot;
+     * trim(&quot;abc&quot;)         = &quot;abc&quot;
+     * trim(&quot;    abc    &quot;) = &quot;abc&quot;
+     * </pre>
+     *
+     * @param str 要处理的字符串
+     * @return 除去头尾空白的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     */
+    public static String trim(CharSequence str) {
+        return (null == str) ? null : trim(str, 0);
+    }
+
+    /**
+     * 除去字符串头尾部的空白符，如果字符串是<code>null</code>，依然返回<code>null</code>。
+     *
+     * @param str  要处理的字符串
+     * @param mode <code>-1</code>表示trimStart，<code>0</code>表示trim全部， <code>1</code>表示trimEnd
+     * @return 除去指定字符后的的字符串，如果原字串为<code>null</code>，则返回<code>null</code>
+     */
+    public static String trim(CharSequence str, int mode) {
+        if (str == null) {
+            return null;
+        }
+
+        int length = str.length();
+        int start = 0;
+        int end = length;
+
+        // 扫描字符串头部
+        if (mode <= 0) {
+            while ((start < end) && (UCharUtil.isBlankChar(str.charAt(start)))) {
+                start++;
+            }
+        }
+
+        // 扫描字符串尾部
+        if (mode >= 0) {
+            while ((start < end) && (UCharUtil.isBlankChar(str.charAt(end - 1)))) {
+                end--;
+            }
+        }
+
+        if ((start > 0) || (end < length)) {
+            return str.toString().substring(start, end);
+        }
+
+        return str.toString();
+    }
+
+    /**
+     * 除去字符串头尾部的空白，如果字符串是{@code null}，返回<code>""</code>。
+     *
+     * <pre>
+     * StrUtil.trimToNull(null)          = null
+     * StrUtil.trimToNull("")            = null
+     * StrUtil.trimToNull("     ")       = null
+     * StrUtil.trimToNull("abc")         = "abc"
+     * StrUtil.trimToEmpty("    abc    ") = "abc"
+     * </pre>
+     *
+     * @param str 字符串
+     * @return 去除两边空白符后的字符串, 如果为空返回null
+     */
+    public static String trimToNull(CharSequence str) {
+        final String trimStr = trim(str);
+        return EMPTY.equals(trimStr) ? null : trimStr;
+    }
+
+    /**
+     * 是否以指定字符串开头<br>
+     * 如果给定的字符串和开头字符串都为null则返回true，否则任意一个值为null返回false
+     *
+     * @param str          被监测字符串
+     * @param prefix       开头字符串
+     * @param isIgnoreCase 是否忽略大小写
+     * @return 是否以指定字符串开头
+     */
+    public static boolean startWith(CharSequence str, CharSequence prefix, boolean isIgnoreCase) {
+        if (null == str || null == prefix) {
+            if (null == str && null == prefix) {
+                return true;
+            }
+            return false;
+        }
+
+        if (isIgnoreCase) {
+            return str.toString().toLowerCase().startsWith(prefix.toString().toLowerCase());
+        } else {
+            return str.toString().startsWith(prefix.toString());
+        }
+    }
+
+    /**
+     * 是否以指定字符串开头，忽略大小写
+     *
+     * @param str    被监测字符串
+     * @param prefix 开头字符串
+     * @return 是否以指定字符串开头
+     */
+    public static boolean startWithIgnoreCase(CharSequence str, CharSequence prefix) {
+        return startWith(str, prefix, true);
+    }
+    // ------------------------------------------------------------------------------ Split
+
+    /**
+     * 截取分隔字符串之前的字符串，不包括分隔字符串<br>
+     * 如果给定的字符串为空串（null或""）或者分隔字符串为null，返回原字符串<br>
+     * 如果分隔字符串未找到，返回原字符串，举例如下：
+     *
+     * <pre>
+     * StrUtil.subBefore(null, *)      = null
+     * StrUtil.subBefore("", *)        = ""
+     * StrUtil.subBefore("abc", 'a')   = ""
+     * StrUtil.subBefore("abcba", 'b') = "a"
+     * StrUtil.subBefore("abc", 'c')   = "ab"
+     * StrUtil.subBefore("abc", 'd')   = "abc"
+     * </pre>
+     *
+     * @param string          被查找的字符串
+     * @param separator       分隔字符串（不包括）
+     * @param isLastSeparator 是否查找最后一个分隔字符串（多次出现分隔字符串时选取最后一个），true为选取最后一个
+     * @return 切割后的字符串
+     */
+    public static String subBefore(CharSequence string, char separator, boolean isLastSeparator) {
+        if (isEmpty(string)) {
+            return null == string ? null : string.toString();
+        }
+
+        final String str = string.toString();
+        final int pos = isLastSeparator ? str.lastIndexOf(separator) : str.indexOf(separator);
+        if (INDEX_NOT_FOUND == pos) {
+            return str;
+        }
+        if (0 == pos) {
+            return EMPTY;
+        }
+        return str.substring(0, pos);
     }
 
     /**

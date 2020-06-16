@@ -31,4 +31,57 @@ public class Assert {
         }
         return object;
     }
+
+    /**
+     * 断言对象是否不为{@code null} ，如果为{@code null} 抛出{@link NullPointerException} 异常
+     *
+     * <pre class="code">
+     * Assert.notNull(clazz);
+     * </pre>
+     *
+     * @param <T>    被检查对象类型
+     * @param object 被检查对象
+     * @return 非空对象
+     * @throws NullPointerException if the object is {@code null}
+     */
+    public static <T> T notNull(T object) throws NullPointerException {
+        return notNull(object, "[Assertion failed] - this argument is required; it must not be null");
+    }
+
+    /**
+     * 检查给定字符串是否为空白（null、空串或只包含空白符），为空抛出 {@link IllegalArgumentException}
+     *
+     * <pre class="code">
+     * Assert.notBlank(name, "Name must not be blank");
+     * </pre>
+     *
+     * @param text 被检查字符串
+     * @return 非空字符串
+     * @throws IllegalArgumentException 被检查字符串为空白
+     * @see UStringUtil#isNotBlank(CharSequence)
+     */
+    public static String notBlank(String text) throws IllegalArgumentException {
+        return notBlank(text, "[Assertion failed] - this String argument must have text; it must not be null, empty, or blank");
+    }
+
+    /**
+     * 检查给定字符串是否为空白（null、空串或只包含空白符），为空抛出 {@link IllegalArgumentException}
+     *
+     * <pre class="code">
+     * Assert.notBlank(name, "Name must not be blank");
+     * </pre>
+     *
+     * @param text             被检查字符串
+     * @param errorMsgTemplate 错误消息模板，变量使用{}表示
+     * @param params           参数
+     * @return 非空字符串
+     * @throws IllegalArgumentException 被检查字符串为空白
+     * @see UStringUtil#isNotBlank(CharSequence)
+     */
+    public static String notBlank(String text, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
+        if (UStringUtil.isBlank(text)) {
+            throw new IllegalArgumentException(UStringUtil.format(errorMsgTemplate, params));
+        }
+        return text;
+    }
 }

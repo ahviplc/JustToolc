@@ -99,7 +99,7 @@ public class FileWriter extends FileWrapper {
     /**
      * 将String写入文件
      *
-     * @param content 写入的内容
+     * @param content  写入的内容
      * @param isAppend 是否追加
      * @return 目标文件
      * @throws IORuntimeException IO异常
@@ -110,9 +110,9 @@ public class FileWriter extends FileWrapper {
             writer = getWriter(isAppend);
             writer.write(content);
             writer.flush();
-        }catch(IOException e){
+        } catch (IOException e) {
             throw new IORuntimeException(e);
-        }finally {
+        } finally {
             UIoUtil.close(writer);
         }
         return file;
@@ -132,14 +132,15 @@ public class FileWriter extends FileWrapper {
             throw new IORuntimeException(e);
         }
     }
+
     /**
      * 检查文件
      *
-     * @throws IORuntimeException  IO异常
+     * @throws IORuntimeException IO异常
      */
     private void checkFile() throws IORuntimeException {
         Assert.notNull(file, "File to write content is null !");
-        if(this.file.exists() && false == file.isFile()){
+        if (this.file.exists() && false == file.isFile()) {
             throw new IORuntimeException("File [{}] is not a file !", this.file.getAbsoluteFile());
         }
     }

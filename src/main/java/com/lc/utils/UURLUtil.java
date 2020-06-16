@@ -10,6 +10,7 @@ import java.net.URL;
  * 统一资源定位符相关工具类
  *
  * @author LC
+ * @since 0.1
  */
 public class UURLUtil {
     /**

@@ -67,7 +67,6 @@ public class UConsole {
      *
      * @param template 文本模板，被替换的部分用 {} 表示
      * @param values   值
-     * @since 3.3.1
      */
     public static void print(String template, Object... values) {
         out.print(UStringUtil.format(template, values));

@@ -7,6 +7,7 @@ import com.lc.core.ASCIIStrCache;
  * 部分工具来自于Apache Commons系列
  *
  * @author LC
+ * @since 0.1
  */
 public class UCharUtil {
     public static final char SPACE = ' ';

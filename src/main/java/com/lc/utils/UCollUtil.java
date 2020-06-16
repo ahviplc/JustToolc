@@ -10,6 +10,7 @@ import java.util.Iterator;
  *
  * @author LC
  * @see UCollUtil
+ * @since 0.1
  */
 public class UCollUtil {
     /**
