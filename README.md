@@ -21,7 +21,7 @@ ahviplc/JustToolc
 
 ## changelog 
 src/test/LCKu
-> https://github.com/ahviplc/JustToolc/tree/master/src/test/java/com/lc/LCKu
+> https://github.com/ahviplc/JustToolc/tree/master/src/test/LCKu
 
 ## maven命令操作
 maven清理命令 
