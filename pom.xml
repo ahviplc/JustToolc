@@ -22,6 +22,8 @@
         <skipTests>true</skipTests>
         <junit.version>4.13</junit.version>
         <lombok.version>1.18.12</lombok.version>
+        <!-- 编译JDK版本versions -->
+        <compile.version>8</compile.version>
     </properties>
 
     <dependencies>
@@ -47,4 +49,33 @@
             <email>ahlc@sina.cn</email>
         </developer>
     </developers>
+
+    <build>
+        <plugins>
+            <!--compiler-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${compile.version}</source>
+                    <target>${compile.version}</target>
+                </configuration>
+            </plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
