@@ -2,11 +2,13 @@ package com.lc.utils;
 
 /**
  * 比较工具类
+ * Full Of ❤Love❤
  *
  * @author LC
  * @since 0.1
  */
 public class UCompareUtil {
+
     /**
      * {@code null}安全的对象比较，{@code null}对象排在末尾
      *
@@ -39,5 +41,47 @@ public class UCompareUtil {
             return isNullGreater ? -1 : 1;
         }
         return c1.compareTo(c2);
+    }
+
+    /**
+     * 自然比较两个对象的大小，比较规则如下：
+     *
+     * <pre>
+     * 1、如果实现Comparable调用compareTo比较
+     * 2、o1.equals(o2)返回0
+     * 3、比较hashCode值
+     * 4、比较toString值
+     * </pre>
+     *
+     * @param o1            对象1
+     * @param o2            对象2
+     * @param isNullGreater null值是否做为最大值
+     * @return int 比较结果，如果o1 &lt; o2，返回数小于0，o1==o2返回0，o1 &gt; o2 大于0
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static <T> int compare(T o1, T o2, boolean isNullGreater) {
+        if (o1 == o2) {
+            return 0;
+        } else if (null == o1) {// null 排在后面
+            return isNullGreater ? 1 : -1;
+        } else if (null == o2) {
+            return isNullGreater ? -1 : 1;
+        }
+
+        if (o1 instanceof Comparable && o2 instanceof Comparable) {
+            //如果bean可比较，直接比较bean
+            return ((Comparable) o1).compareTo(o2);
+        }
+
+        if (o1.equals(o2)) {
+            return 0;
+        }
+
+        int result = Integer.compare(o1.hashCode(), o2.hashCode());
+        if (0 == result) {
+            result = compare(o1.toString(), o2.toString());
+        }
+
+        return result;
     }
 }

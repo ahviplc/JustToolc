@@ -16,6 +16,9 @@ import java.util.Set;
 
 /**
  * 数字工具类
+ * Full Of ❤Love❤
+ *
+ * <p>
  * 对于精确值计算应该使用 {@link BigDecimal}<br>
  * JDK7中<strong>BigDecimal(double val)</strong>构造方法的结果有一定的不可预知性，例如：
  *
@@ -36,7 +39,6 @@ import java.util.Set;
  *
  * @author LC
  * @version 0.1
- * Full Of ❤Love❤
  * @since 0.1
  */
 public class UNumberUtil {

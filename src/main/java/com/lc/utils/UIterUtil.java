@@ -1,6 +1,8 @@
 package com.lc.utils;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * {@link Iterable} 和 {@link Iterator} 相关工具类
@@ -9,6 +11,27 @@ import java.util.Iterator;
  * @since 0.1
  */
 public class UIterUtil {
+
+    /**
+     * Iterator是否为空
+     *
+     * @param Iterator Iterator对象
+     * @return 是否为空
+     */
+    public static boolean isNotEmpty(Iterator<?> Iterator) {
+        return null != Iterator && Iterator.hasNext();
+    }
+
+    /**
+     * Iterable是否为空
+     *
+     * @param iterable Iterable对象
+     * @return 是否为空
+     */
+    public static boolean isNotEmpty(Iterable<?> iterable) {
+        return null != iterable && isNotEmpty(iterable.iterator());
+    }
+
     /**
      * 以 conjunction 为分隔符将集合转换为字符串
      *
@@ -92,5 +115,33 @@ public class UIterUtil {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * Iterator转List<br>
+     * 不判断，直接生成新的List
+     *
+     * @param <E>  元素类型
+     * @param iter {@link Iterator}
+     * @return List
+     */
+    public static <E> List<E> toList(Iterable<E> iter) {
+        return toList(iter.iterator());
+    }
+
+    /**
+     * Iterator转List<br>
+     * 不判断，直接生成新的List
+     *
+     * @param <E>  元素类型
+     * @param iter {@link Iterator}
+     * @return List
+     */
+    public static <E> List<E> toList(Iterator<E> iter) {
+        final List<E> list = new ArrayList<>();
+        while (iter.hasNext()) {
+            list.add(iter.next());
+        }
+        return list;
     }
 }

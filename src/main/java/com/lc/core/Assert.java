@@ -3,12 +3,45 @@ package com.lc.core;
 import com.lc.utils.UStringUtil;
 
 /**
- * 断言<br>
+ * 断言
  * 断言某些对象或值是否符合规定，否则抛出异常。经常用于做变量检查
  *
  * @author LC
  */
 public class Assert {
+
+    /**
+     * 断言是否为真，如果为 {@code false} 抛出 {@code IllegalArgumentException} 异常<br>
+     *
+     * <pre class="code">
+     * Assert.isTrue(i &gt; 0, "The value must be greater than zero");
+     * </pre>
+     *
+     * @param expression       波尔值
+     * @param errorMsgTemplate 错误抛出异常附带的消息模板，变量用{}代替
+     * @param params           参数列表
+     * @throws IllegalArgumentException if expression is {@code false}
+     */
+    public static void isTrue(boolean expression, String errorMsgTemplate, Object... params) throws IllegalArgumentException {
+        if (false == expression) {
+            throw new IllegalArgumentException(UStringUtil.format(errorMsgTemplate, params));
+        }
+    }
+
+    /**
+     * 断言是否为真，如果为 {@code false} 抛出 {@code IllegalArgumentException} 异常<br>
+     *
+     * <pre class="code">
+     * Assert.isTrue(i &gt; 0, "The value must be greater than zero");
+     * </pre>
+     *
+     * @param expression 波尔值
+     * @throws IllegalArgumentException if expression is {@code false}
+     */
+    public static void isTrue(boolean expression) throws IllegalArgumentException {
+        isTrue(expression, "[Assertion failed] - this expression must be true");
+    }
+
     // ----------------------------------------------------------------------------------------------------------- Check not null
 
     /**

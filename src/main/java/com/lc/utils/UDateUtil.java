@@ -1,5 +1,14 @@
 package com.lc.utils;
 
+import com.lc.core.date.BetweenFormater;
+import com.lc.core.date.DateField;
+import com.lc.core.date.DatePattern;
+import com.lc.core.date.DateTime;
+import com.lc.core.date.format.DateParser;
+import com.lc.core.date.format.FastDateFormat;
+import com.lc.exception.DateException;
+import com.lc.lang.Validator;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -9,10 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Date;
+import java.util.*;
 
 /**
  * 日期时间工具类
@@ -1197,4 +1203,320 @@ public class UDateUtil {
         Long nanoTime = System.nanoTime(); // 纳秒
         return cutime + (nanoTime - nanoTime / 1000000 * 1000000) / 1000;
     }
+
+    //===============================================================================================================begin ☆
+
+    /**
+     * 当前时间秒数
+     *
+     * @return 当前时间秒数
+     */
+    public static long currentSeconds() {
+        return System.currentTimeMillis() / 1000;
+    }
+
+    /**
+     * 转换为Calendar对象
+     *
+     * @param date 日期对象
+     * @return Calendar对象
+     */
+    public static Calendar calendar(Date date) {
+        return calendar(date.getTime());
+    }
+
+    /**
+     * 转换为Calendar对象
+     *
+     * @param millis 时间戳
+     * @return Calendar对象
+     */
+    public static Calendar calendar(long millis) {
+        final Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(millis);
+        return cal;
+    }
+
+    /**
+     * 将日期字符串转换为{@link DateTime}对象，格式：<br>
+     * <ol>
+     * <li>yyyy-MM-dd HH:mm:ss</li>
+     * <li>yyyy/MM/dd HH:mm:ss</li>
+     * <li>yyyy.MM.dd HH:mm:ss</li>
+     * <li>yyyy年MM月dd日 HH时mm分ss秒</li>
+     * <li>yyyy-MM-dd</li>
+     * <li>yyyy/MM/dd</li>
+     * <li>yyyy.MM.dd</li>
+     * <li>HH:mm:ss</li>
+     * <li>HH时mm分ss秒</li>
+     * <li>yyyy-MM-dd HH:mm</li>
+     * <li>yyyy-MM-dd HH:mm:ss.SSS</li>
+     * <li>yyyyMMddHHmmss</li>
+     * <li>yyyyMMddHHmmssSSS</li>
+     * <li>yyyyMMdd</li>
+     * <li>EEE, dd MMM yyyy HH:mm:ss z</li>
+     * <li>EEE MMM dd HH:mm:ss zzz yyyy</li>
+     * </ol>
+     *
+     * @param dateStr 日期字符串
+     * @return 日期
+     */
+    public static DateTime parse(String dateStr) {
+        if (null == dateStr) {
+            return null;
+        }
+        // 去掉两边空格并去掉中文日期中的“日”，以规范长度
+        dateStr = dateStr.trim().replace("日", "");
+        int length = dateStr.length();
+
+        if (Validator.isNumber(dateStr)) {
+            // 纯数字形式
+            if (length == DatePattern.PURE_DATETIME_PATTERN.length()) {
+                return parse(dateStr, DatePattern.PURE_DATETIME_FORMAT);
+            } else if (length == DatePattern.PURE_DATETIME_MS_PATTERN.length()) {
+                return parse(dateStr, DatePattern.PURE_DATETIME_MS_FORMAT);
+            } else if (length == DatePattern.PURE_DATE_PATTERN.length()) {
+                return parse(dateStr, DatePattern.PURE_DATE_FORMAT);
+            } else if (length == DatePattern.PURE_TIME_PATTERN.length()) {
+                return parse(dateStr, DatePattern.PURE_TIME_FORMAT);
+            }
+        }
+
+        if (length == DatePattern.NORM_DATETIME_PATTERN.length() || length == DatePattern.NORM_DATETIME_PATTERN.length() + 1) {
+            return parseDateTime(dateStr);
+        } else if (length == DatePattern.NORM_DATE_PATTERN.length()) {
+            return parseDate(dateStr);
+        } else if (length == DatePattern.NORM_TIME_PATTERN.length() || length == DatePattern.NORM_TIME_PATTERN.length() + 1) {
+            return parseTime(dateStr);
+        } else if (length == DatePattern.NORM_DATETIME_MINUTE_PATTERN.length() || length == DatePattern.NORM_DATETIME_MINUTE_PATTERN.length() + 1) {
+            return parse(normalize(dateStr), DatePattern.NORM_DATETIME_MINUTE_FORMAT);
+        } else if (length >= DatePattern.NORM_DATETIME_MS_PATTERN.length() - 2) {
+            return parse(normalize(dateStr), DatePattern.NORM_DATETIME_MS_FORMAT);
+        }
+
+        // 没有更多匹配的时间格式
+        throw new DateException("No format fit for date String [{}] !", dateStr);
+    }
+
+    /**
+     * @return 今年
+     */
+    public static int thisYear() {
+        return year(date());
+    }
+
+    /**
+     * 获得年的部分
+     *
+     * @param date 日期
+     * @return 年的部分
+     */
+    public static int year(Date date) {
+        return DateTime.of(date).year();
+    }
+
+    /**
+     * 转换为{@link DateTime}对象
+     *
+     * @return 当前时间
+     */
+    public static DateTime date() {
+        return new DateTime();
+    }
+
+    /**
+     * 格式化日期间隔输出
+     *
+     * @param betweenMs 日期间隔
+     * @param level     级别，按照天、小时、分、秒、毫秒分为5个等级
+     * @return XX天XX小时XX分XX秒XX毫秒
+     */
+    public static String formatBetween(long betweenMs, BetweenFormater.Level level) {
+        return new BetweenFormater(betweenMs, level).format();
+    }
+
+    /**
+     * 将特定格式的日期转换为Date对象
+     *
+     * @param dateStr 特定格式的日期
+     * @param format  格式，例如yyyy-MM-dd
+     * @return 日期对象
+     */
+    public static DateTime parse(String dateStr, String format) {
+        return new DateTime(dateStr, format);
+    }
+
+    /**
+     * 构建DateTime对象
+     *
+     * @param dateStr Date字符串
+     * @param parser  格式化器,{@link FastDateFormat}
+     * @return DateTime对象
+     */
+    public static DateTime parse(String dateStr, DateParser parser) {
+        return new DateTime(dateStr, parser);
+    }
+
+    /**
+     * 格式yyyy-MM-dd HH:mm:ss
+     *
+     * @param dateString 标准形式的时间字符串
+     * @return 日期对象
+     */
+    public static DateTime parseDateTime(String dateString) {
+        dateString = normalize(dateString);
+        return parse(dateString, DatePattern.NORM_DATETIME_FORMAT);
+    }
+
+    /**
+     * 格式yyyy-MM-dd
+     *
+     * @param dateString 标准形式的日期字符串
+     * @return 日期对象
+     */
+    public static DateTime parseDate(String dateString) {
+        dateString = normalize(dateString);
+        return parse(dateString, DatePattern.NORM_DATE_FORMAT);
+    }
+
+    /**
+     * 解析时间，格式HH:mm:ss，默认为1970-01-01
+     *
+     * @param timeString 标准形式的日期字符串
+     * @return 日期对象
+     */
+    public static DateTime parseTime(String timeString) {
+        timeString = normalize(timeString);
+        return parse(timeString, DatePattern.NORM_TIME_FORMAT);
+    }
+
+    /**
+     * 偏移天
+     *
+     * @param date   日期
+     * @param offset 偏移天数，正数向未来偏移，负数向历史偏移
+     * @return 偏移后的日期
+     */
+    public static DateTime offsetDay(Date date, int offset) {
+        return offset(date, DateField.DAY_OF_YEAR, offset);
+    }
+
+    /**
+     * 获取指定日期偏移指定时间后的时间，生成的偏移日期不影响原日期
+     *
+     * @param date      基准日期
+     * @param dateField 偏移的粒度大小（小时、天、月等）{@link DateField}
+     * @param offset    偏移量，正数为向后偏移，负数为向前偏移
+     * @return 偏移后的日期
+     */
+    public static DateTime offset(Date date, DateField dateField, int offset) {
+        return dateNew(date).offset(dateField, offset);
+    }
+
+    /**
+     * 根据已有{@link Date} 产生新的{@link DateTime}对象
+     *
+     * @param date Date对象
+     * @return {@link DateTime}对象
+     */
+    public static DateTime dateNew(Date date) {
+        return new DateTime(date);
+    }
+
+    // ------------------------------------------------------------------------ Private method start
+
+    /**
+     * 获得指定日期年份和季节<br>
+     * 格式：[20131]表示2013年第一季度
+     *
+     * @param cal 日期
+     * @deprecated 请使用{@link yearAndQuarter}
+     */
+    @Deprecated
+    private static String yearAndSeason(Calendar cal) {
+        return new StringBuilder().append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH) / 3 + 1).toString();
+    }
+
+    /**
+     * 获得指定日期年份和季节<br>
+     * 格式：[20131]表示2013年第一季度
+     *
+     * @param cal 日期
+     */
+    private static String yearAndQuarter(Calendar cal) {
+        return new StringBuilder().append(cal.get(Calendar.YEAR)).append(cal.get(Calendar.MONTH) / 3 + 1).toString();
+    }
+
+    /**
+     * 标准化日期，默认处理以空格区分的日期时间格式，空格前为日期，空格后为时间：<br>
+     * 将以下字符替换为"-"
+     *
+     * <pre>
+     * "."
+     * "/"
+     * "年"
+     * "月"
+     * </pre>
+     * <p>
+     * 将以下字符去除
+     *
+     * <pre>
+     * "日"
+     * </pre>
+     * <p>
+     * 将以下字符替换为":"
+     *
+     * <pre>
+     * "时"
+     * "分"
+     * "秒"
+     * </pre>
+     * <p>
+     * 当末位是":"时去除之（不存在毫秒时）
+     *
+     * @param dateStr 日期时间字符串
+     * @return 格式化后的日期字符串
+     */
+    private static String normalize(String dateStr) {
+        if (UStringUtil.isBlank(dateStr)) {
+            return dateStr;
+        }
+
+        // 日期时间分开处理
+        final List<String> dateAndTime = UStringUtil.splitTrim(dateStr, ' ');
+        final int size = dateAndTime.size();
+        if (size < 1 || size > 2) {
+            // 非可被标准处理的格式
+            return dateStr;
+        }
+
+        final StringBuilder builder = UStringUtil.builder();
+
+        // 日期部分（"\"、"/"、"."、"年"、"月"都替换为"-"）
+        String datePart = dateAndTime.get(0).replaceAll("[\\/.年月]", "-");
+        datePart = UStringUtil.removeSuffix(datePart, "日");
+        builder.append(datePart);
+
+        // 时间部分
+        if (size == 2) {
+            builder.append(' ');
+            String timePart = dateAndTime.get(1).replaceAll("[时分秒]", ":");
+            timePart = UStringUtil.removeSuffix(timePart, ":");
+            builder.append(timePart);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * 是否闰年
+     *
+     * @param year 年
+     * @return 是否闰年
+     */
+    public static boolean isLeapYear(int year) {
+        return new GregorianCalendar().isLeapYear(year);
+    }
+    // ------------------------------------------------------------------------ Private method end
+    //===============================================================================================================end ☆
 }
