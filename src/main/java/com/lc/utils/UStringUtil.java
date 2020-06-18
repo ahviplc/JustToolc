@@ -438,11 +438,11 @@ public class UStringUtil {
      * 除去字符串头尾部的空白，如果字符串是{@code null}，返回<code>""</code>。
      *
      * <pre>
-     * StrUtil.trimToEmpty(null)          = ""
-     * StrUtil.trimToEmpty("")            = ""
-     * StrUtil.trimToEmpty("     ")       = ""
-     * StrUtil.trimToEmpty("abc")         = "abc"
-     * StrUtil.trimToEmpty("    abc    ") = "abc"
+     * UStringUtil.trimToEmpty(null)          = ""
+     * UStringUtil.trimToEmpty("")            = ""
+     * UStringUtil.trimToEmpty("     ")       = ""
+     * UStringUtil.trimToEmpty("abc")         = "abc"
+     * UStringUtil.trimToEmpty("    abc    ") = "abc"
      * </pre>
      *
      * @param str 字符串
@@ -456,11 +456,11 @@ public class UStringUtil {
      * 除去字符串头尾部的空白，如果字符串是{@code null}，返回<code>""</code>。
      *
      * <pre>
-     * StrUtil.trimToNull(null)          = null
-     * StrUtil.trimToNull("")            = null
-     * StrUtil.trimToNull("     ")       = null
-     * StrUtil.trimToNull("abc")         = "abc"
-     * StrUtil.trimToEmpty("    abc    ") = "abc"
+     * UStringUtil.trimToNull(null)          = null
+     * UStringUtil.trimToNull("")            = null
+     * UStringUtil.trimToNull("     ")       = null
+     * UStringUtil.trimToNull("abc")         = "abc"
+     * UStringUtil.trimToEmpty("    abc    ") = "abc"
      * </pre>
      *
      * @param str 字符串
@@ -1682,13 +1682,13 @@ public class UStringUtil {
      * 切割指定长度的后部分的字符串
      *
      * <pre>
-     * StrUtil.subSufByLength("abcde", 3)      =    "cde"
-     * StrUtil.subSufByLength("abcde", 0)      =    ""
-     * StrUtil.subSufByLength("abcde", -5)     =    ""
-     * StrUtil.subSufByLength("abcde", -1)     =    ""
-     * StrUtil.subSufByLength("abcde", 5)       =    "abcde"
-     * StrUtil.subSufByLength("abcde", 10)     =    "abcde"
-     * StrUtil.subSufByLength(null, 3)               =    null
+     * UStringUtil.subSufByLength("abcde", 3)      =    "cde"
+     * UStringUtil.subSufByLength("abcde", 0)      =    ""
+     * UStringUtil.subSufByLength("abcde", -5)     =    ""
+     * UStringUtil.subSufByLength("abcde", -1)     =    ""
+     * UStringUtil.subSufByLength("abcde", 5)       =    "abcde"
+     * UStringUtil.subSufByLength("abcde", 10)     =    "abcde"
+     * UStringUtil.subSufByLength(null, 3)               =    null
      * </pre>
      *
      * @param string 字符串
@@ -1724,14 +1724,14 @@ public class UStringUtil {
      * 如果分隔字符串为空串""，则返回空串，如果分隔字符串未找到，返回原字符串，举例如下：
      *
      * <pre>
-     * StrUtil.subBefore(null, *)      = null
-     * StrUtil.subBefore("", *)        = ""
-     * StrUtil.subBefore("abc", "a")   = ""
-     * StrUtil.subBefore("abcba", "b") = "a"
-     * StrUtil.subBefore("abc", "c")   = "ab"
-     * StrUtil.subBefore("abc", "d")   = "abc"
-     * StrUtil.subBefore("abc", "")    = ""
-     * StrUtil.subBefore("abc", null)  = "abc"
+     * UStringUtil.subBefore(null, *)      = null
+     * UStringUtil.subBefore("", *)        = ""
+     * UStringUtil.subBefore("abc", "a")   = ""
+     * UStringUtil.subBefore("abcba", "b") = "a"
+     * UStringUtil.subBefore("abc", "c")   = "ab"
+     * UStringUtil.subBefore("abc", "d")   = "abc"
+     * UStringUtil.subBefore("abc", "")    = ""
+     * UStringUtil.subBefore("abc", null)  = "abc"
      * </pre>
      *
      * @param string          被查找的字符串
@@ -1765,12 +1765,12 @@ public class UStringUtil {
      * 如果分隔字符串未找到，返回原字符串，举例如下：
      *
      * <pre>
-     * StrUtil.subBefore(null, *)      = null
-     * StrUtil.subBefore("", *)        = ""
-     * StrUtil.subBefore("abc", 'a')   = ""
-     * StrUtil.subBefore("abcba", 'b') = "a"
-     * StrUtil.subBefore("abc", 'c')   = "ab"
-     * StrUtil.subBefore("abc", 'd')   = "abc"
+     * UStringUtil.subBefore(null, *)      = null
+     * UStringUtil.subBefore("", *)        = ""
+     * UStringUtil.subBefore("abc", 'a')   = ""
+     * UStringUtil.subBefore("abcba", 'b') = "a"
+     * UStringUtil.subBefore("abc", 'c')   = "ab"
+     * UStringUtil.subBefore("abc", 'd')   = "abc"
      * </pre>
      *
      * @param string          被查找的字符串
@@ -1800,14 +1800,14 @@ public class UStringUtil {
      * 如果分隔字符串为空串（null或""），则返回空串，如果分隔字符串未找到，返回空串，举例如下：
      *
      * <pre>
-     * StrUtil.subAfter(null, *)      = null
-     * StrUtil.subAfter("", *)        = ""
-     * StrUtil.subAfter(*, null)      = ""
-     * StrUtil.subAfter("abc", "a")   = "bc"
-     * StrUtil.subAfter("abcba", "b") = "cba"
-     * StrUtil.subAfter("abc", "c")   = ""
-     * StrUtil.subAfter("abc", "d")   = ""
-     * StrUtil.subAfter("abc", "")    = "abc"
+     * UStringUtil.subAfter(null, *)      = null
+     * UStringUtil.subAfter("", *)        = ""
+     * UStringUtil.subAfter(*, null)      = ""
+     * UStringUtil.subAfter("abc", "a")   = "bc"
+     * UStringUtil.subAfter("abcba", "b") = "cba"
+     * UStringUtil.subAfter("abc", "c")   = ""
+     * UStringUtil.subAfter("abc", "d")   = ""
+     * UStringUtil.subAfter("abc", "")    = "abc"
      * </pre>
      *
      * @param string          被查找的字符串
@@ -1837,12 +1837,12 @@ public class UStringUtil {
      * 如果分隔字符串为空串（null或""），则返回空串，如果分隔字符串未找到，返回空串，举例如下：
      *
      * <pre>
-     * StrUtil.subAfter(null, *)      = null
-     * StrUtil.subAfter("", *)        = ""
-     * StrUtil.subAfter("abc", 'a')   = "bc"
-     * StrUtil.subAfter("abcba", 'b') = "cba"
-     * StrUtil.subAfter("abc", 'c')   = ""
-     * StrUtil.subAfter("abc", 'd')   = ""
+     * UStringUtil.subAfter(null, *)      = null
+     * UStringUtil.subAfter("", *)        = ""
+     * UStringUtil.subAfter("abc", 'a')   = "bc"
+     * UStringUtil.subAfter("abcba", 'b') = "cba"
+     * UStringUtil.subAfter("abc", 'c')   = ""
+     * UStringUtil.subAfter("abc", 'd')   = ""
      * </pre>
      *
      * @param string          被查找的字符串
@@ -1868,16 +1868,16 @@ public class UStringUtil {
      * 栗子：
      *
      * <pre>
-     * StrUtil.subBetween("wx[b]yz", "[", "]") = "b"
-     * StrUtil.subBetween(null, *, *)          = null
-     * StrUtil.subBetween(*, null, *)          = null
-     * StrUtil.subBetween(*, *, null)          = null
-     * StrUtil.subBetween("", "", "")          = ""
-     * StrUtil.subBetween("", "", "]")         = null
-     * StrUtil.subBetween("", "[", "]")        = null
-     * StrUtil.subBetween("yabcz", "", "")     = ""
-     * StrUtil.subBetween("yabcz", "y", "z")   = "abc"
-     * StrUtil.subBetween("yabczyabcz", "y", "z")   = "abc"
+     * UStringUtil.subBetween("wx[b]yz", "[", "]") = "b"
+     * UStringUtil.subBetween(null, *, *)          = null
+     * UStringUtil.subBetween(*, null, *)          = null
+     * UStringUtil.subBetween(*, *, null)          = null
+     * UStringUtil.subBetween("", "", "")          = ""
+     * UStringUtil.subBetween("", "", "]")         = null
+     * UStringUtil.subBetween("", "[", "]")        = null
+     * UStringUtil.subBetween("yabcz", "", "")     = ""
+     * UStringUtil.subBetween("yabcz", "y", "z")   = "abc"
+     * UStringUtil.subBetween("yabczyabcz", "y", "z")   = "abc"
      * </pre>
      *
      * @param str    被切割的字符串
@@ -1910,12 +1910,12 @@ public class UStringUtil {
      * 栗子：
      *
      * <pre>
-     * StrUtil.subBetween(null, *)            = null
-     * StrUtil.subBetween("", "")             = ""
-     * StrUtil.subBetween("", "tag")          = null
-     * StrUtil.subBetween("tagabctag", null)  = null
-     * StrUtil.subBetween("tagabctag", "")    = ""
-     * StrUtil.subBetween("tagabctag", "tag") = "abc"
+     * UStringUtil.subBetween(null, *)            = null
+     * UStringUtil.subBetween("", "")             = ""
+     * UStringUtil.subBetween("", "tag")          = null
+     * UStringUtil.subBetween("tagabctag", null)  = null
+     * UStringUtil.subBetween("tagabctag", "")    = ""
+     * UStringUtil.subBetween("tagabctag", "tag") = "abc"
      * </pre>
      *
      * @param str            被切割的字符串
@@ -1932,17 +1932,17 @@ public class UStringUtil {
      * 栗子：
      *
      * <pre>
-     * StrUtil.subBetweenAll("wx[b]y[z]", "[", "]") 		= ["b","z"]
-     * StrUtil.subBetweenAll(null, *, *)          			= []
-     * StrUtil.subBetweenAll(*, null, *)          			= []
-     * StrUtil.subBetweenAll(*, *, null)          			= []
-     * StrUtil.subBetweenAll("", "", "")          			= []
-     * StrUtil.subBetweenAll("", "", "]")         			= []
-     * StrUtil.subBetweenAll("", "[", "]")        			= []
-     * StrUtil.subBetweenAll("yabcz", "", "")     			= []
-     * StrUtil.subBetweenAll("yabcz", "y", "z")   			= ["abc"]
-     * StrUtil.subBetweenAll("yabczyabcz", "y", "z")   		= ["abc","abc"]
-     * StrUtil.subBetweenAll("[yabc[zy]abcz]", "[", "]");   = ["zy"]           重叠时只截取内部，
+     * UStringUtil.subBetweenAll("wx[b]y[z]", "[", "]") 		= ["b","z"]
+     * UStringUtil.subBetweenAll(null, *, *)          			= []
+     * UStringUtil.subBetweenAll(*, null, *)          			= []
+     * UStringUtil.subBetweenAll(*, *, null)          			= []
+     * UStringUtil.subBetweenAll("", "", "")          			= []
+     * UStringUtil.subBetweenAll("", "", "]")         			= []
+     * UStringUtil.subBetweenAll("", "[", "]")        			= []
+     * UStringUtil.subBetweenAll("yabcz", "", "")     			= []
+     * UStringUtil.subBetweenAll("yabcz", "y", "z")   			= ["abc"]
+     * UStringUtil.subBetweenAll("yabczyabcz", "y", "z")   		= ["abc","abc"]
+     * UStringUtil.subBetweenAll("[yabc[zy]abcz]", "[", "]");   = ["zy"]           重叠时只截取内部，
      * </pre>
      *
      * @param str    被切割的字符串
@@ -2095,9 +2095,9 @@ public class UStringUtil {
      * 重复某个字符串并通过分界符连接
      *
      * <pre>
-     * StrUtil.repeatAndJoin("?", 5, ",")   = "?,?,?,?,?"
-     * StrUtil.repeatAndJoin("?", 0, ",")   = ""
-     * StrUtil.repeatAndJoin("?", 5, null) = "?????"
+     * UStringUtil.repeatAndJoin("?", 5, ",")   = "?,?,?,?,?"
+     * UStringUtil.repeatAndJoin("?", 0, ",")   = ""
+     * UStringUtil.repeatAndJoin("?", 5, null) = "?????"
      * </pre>
      *
      * @param str         被重复的字符串
@@ -2844,9 +2844,9 @@ public class UStringUtil {
      * 补充字符串以满足最小长度
      *
      * <pre>
-     * StrUtil.padPre(null, *, *);//null
-     * StrUtil.padPre("1", 3, "ABC");//"AB1"
-     * StrUtil.padPre("123", 2, "ABC");//"12"
+     * UStringUtil.padPre(null, *, *);//null
+     * UStringUtil.padPre("1", 3, "ABC");//"AB1"
+     * UStringUtil.padPre("123", 2, "ABC");//"12"
      * </pre>
      *
      * @param str       字符串
@@ -2869,7 +2869,11 @@ public class UStringUtil {
     }
 
     /**
-     * 补充字符串以满足最小长度 StrUtil.padPre("1", 3, '0');//"001"
+     * 补充字符串以满足最小长度
+     *
+     * <pre>
+     * UStringUtil.padPre("1", 3, '0');//"001"
+     * </pre>
      *
      * @param str       字符串
      * @param minLength 最小长度
@@ -2890,9 +2894,9 @@ public class UStringUtil {
      * 补充字符串以满足最小长度
      *
      * <pre>
-     * StrUtil.padAfter(null, *, *);//null
-     * StrUtil.padAfter("1", 3, '0');//"100"
-     * StrUtil.padAfter("123", 2, '0');//"23"
+     * UStringUtil.padAfter(null, *, *);//null
+     * UStringUtil.padAfter("1", 3, '0');//"100"
+     * UStringUtil.padAfter("123", 2, '0');//"23"
      * </pre>
      *
      * @param str       字符串，如果为<code>null</code>，直接返回null
@@ -2918,9 +2922,9 @@ public class UStringUtil {
      * 补充字符串以满足最小长度
      *
      * <pre>
-     * StrUtil.padAfter(null, *, *);//null
-     * StrUtil.padAfter("1", 3, "ABC");//"1AB"
-     * StrUtil.padAfter("123", 2, "ABC");//"23"
+     * UStringUtil.padAfter(null, *, *);//null
+     * UStringUtil.padAfter("1", 3, "ABC");//"1AB"
+     * UStringUtil.padAfter("123", 2, "ABC");//"23"
      * </pre>
      *
      * @param str       字符串，如果为<code>null</code>，直接返回null
@@ -2943,15 +2947,19 @@ public class UStringUtil {
     }
 
     /**
-     * 补充字符串以满足最小长度 StrUtil.padEnd("1", 3, '0');//"100"
-     * <p>
+     * 补充字符串以满足最小长度<br>
      * 请使用方法 padAfter()
+     *
+     * <pre>
+     * UStringUtil.padEnd("1", 3, '0');//"100"
+     * <pre>
+     *
      *
      * @param str       字符串，如果为<code>null</code>，按照空串处理
      * @param minLength 最小长度
      * @param padChar   补充的字符
      * @return 补充后的字符串
-     * @deprecated 请使用 {@link #padEnd(CharSequence str, int minLength, char padChar)}
+     * @deprecated 请使用 {@link #padAfter(CharSequence str, int minLength, char padChar)}
      */
     @Deprecated
     public static String padEnd(CharSequence str, int minLength, char padChar) {
@@ -2968,12 +2976,12 @@ public class UStringUtil {
      * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
      *
      * <pre>
-     * StrUtil.center(null, *)   = null
-     * StrUtil.center("", 4)     = "    "
-     * StrUtil.center("ab", -1)  = "ab"
-     * StrUtil.center("ab", 4)   = " ab "
-     * StrUtil.center("abcd", 2) = "abcd"
-     * StrUtil.center("a", 4)    = " a  "
+     * UStringUtil.center(null, *)   = null
+     * UStringUtil.center("", 4)     = "    "
+     * UStringUtil.center("ab", -1)  = "ab"
+     * UStringUtil.center("ab", 4)   = " ab "
+     * UStringUtil.center("abcd", 2) = "abcd"
+     * UStringUtil.center("a", 4)    = " a  "
      * </pre>
      *
      * @param str  字符串
@@ -2988,14 +2996,14 @@ public class UStringUtil {
      * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
      *
      * <pre>
-     * StrUtil.center(null, *, *)     = null
-     * StrUtil.center("", 4, ' ')     = "    "
-     * StrUtil.center("ab", -1, ' ')  = "ab"
-     * StrUtil.center("ab", 4, ' ')   = " ab "
-     * StrUtil.center("abcd", 2, ' ') = "abcd"
-     * StrUtil.center("a", 4, ' ')    = " a  "
-     * StrUtil.center("a", 4, 'y')   = "yayy"
-     * StrUtil.center("abc", 7, ' ')   = "  abc  "
+     * UStringUtil.center(null, *, *)     = null
+     * UStringUtil.center("", 4, ' ')     = "    "
+     * UStringUtil.center("ab", -1, ' ')  = "ab"
+     * UStringUtil.center("ab", 4, ' ')   = " ab "
+     * UStringUtil.center("abcd", 2, ' ') = "abcd"
+     * UStringUtil.center("a", 4, ' ')    = " a  "
+     * UStringUtil.center("a", 4, 'y')   = "yayy"
+     * UStringUtil.center("abc", 7, ' ')   = "  abc  "
      * </pre>
      *
      * @param str     字符串
@@ -3021,15 +3029,15 @@ public class UStringUtil {
      * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
      *
      * <pre>
-     * StrUtil.center(null, *, *)     = null
-     * StrUtil.center("", 4, " ")     = "    "
-     * StrUtil.center("ab", -1, " ")  = "ab"
-     * StrUtil.center("ab", 4, " ")   = " ab "
-     * StrUtil.center("abcd", 2, " ") = "abcd"
-     * StrUtil.center("a", 4, " ")    = " a  "
-     * StrUtil.center("a", 4, "yz")   = "yayz"
-     * StrUtil.center("abc", 7, null) = "  abc  "
-     * StrUtil.center("abc", 7, "")   = "  abc  "
+     * UStringUtil.center(null, *, *)     = null
+     * UStringUtil.center("", 4, " ")     = "    "
+     * UStringUtil.center("ab", -1, " ")  = "ab"
+     * UStringUtil.center("ab", 4, " ")   = " ab "
+     * UStringUtil.center("abcd", 2, " ") = "abcd"
+     * UStringUtil.center("a", 4, " ")    = " a  "
+     * UStringUtil.center("a", 4, "yz")   = "yayz"
+     * UStringUtil.center("abc", 7, null) = "  abc  "
+     * UStringUtil.center("abc", 7, "")   = "  abc  "
      * </pre>
      *
      * @param str    字符串
@@ -3143,13 +3151,13 @@ public class UStringUtil {
      * 参数为 {@code null} 或者 "" 返回 {@code 0}.
      *
      * <pre>
-     * StrUtil.count(null, *)       = 0
-     * StrUtil.count("", *)         = 0
-     * StrUtil.count("abba", null)  = 0
-     * StrUtil.count("abba", "")    = 0
-     * StrUtil.count("abba", "a")   = 2
-     * StrUtil.count("abba", "ab")  = 1
-     * StrUtil.count("abba", "xxx") = 0
+     * UStringUtil.count(null, *)       = 0
+     * UStringUtil.count("", *)         = 0
+     * UStringUtil.count("abba", null)  = 0
+     * UStringUtil.count("abba", "")    = 0
+     * UStringUtil.count("abba", "a")   = 2
+     * UStringUtil.count("abba", "ab")  = 1
+     * UStringUtil.count("abba", "xxx") = 0
      * </pre>
      *
      * @param content      被查找的字符串
@@ -3243,16 +3251,16 @@ public class UStringUtil {
      * 比较两个字符串，用于排序
      *
      * <pre>
-     * StrUtil.compare(null, null, *)     = 0
-     * StrUtil.compare(null , "a", true)  &lt; 0
-     * StrUtil.compare(null , "a", false) &gt; 0
-     * StrUtil.compare("a", null, true)   &gt; 0
-     * StrUtil.compare("a", null, false)  &lt; 0
-     * StrUtil.compare("abc", "abc", *)   = 0
-     * StrUtil.compare("a", "b", *)       &lt; 0
-     * StrUtil.compare("b", "a", *)       &gt; 0
-     * StrUtil.compare("a", "B", *)       &gt; 0
-     * StrUtil.compare("ab", "abc", *)    &lt; 0
+     * UStringUtil.compare(null, null, *)     = 0
+     * UStringUtil.compare(null , "a", true)  &lt; 0
+     * UStringUtil.compare(null , "a", false) &gt; 0
+     * UStringUtil.compare("a", null, true)   &gt; 0
+     * UStringUtil.compare("a", null, false)  &lt; 0
+     * UStringUtil.compare("abc", "abc", *)   = 0
+     * UStringUtil.compare("a", "b", *)       &lt; 0
+     * UStringUtil.compare("b", "a", *)       &gt; 0
+     * UStringUtil.compare("a", "B", *)       &gt; 0
+     * UStringUtil.compare("ab", "abc", *)    &lt; 0
      * </pre>
      *
      * @param str1       字符串1
@@ -3277,18 +3285,18 @@ public class UStringUtil {
      * 比较两个字符串，用于排序，大小写不敏感
      *
      * <pre>
-     * StrUtil.compareIgnoreCase(null, null, *)     = 0
-     * StrUtil.compareIgnoreCase(null , "a", true)  &lt; 0
-     * StrUtil.compareIgnoreCase(null , "a", false) &gt; 0
-     * StrUtil.compareIgnoreCase("a", null, true)   &gt; 0
-     * StrUtil.compareIgnoreCase("a", null, false)  &lt; 0
-     * StrUtil.compareIgnoreCase("abc", "abc", *)   = 0
-     * StrUtil.compareIgnoreCase("abc", "ABC", *)   = 0
-     * StrUtil.compareIgnoreCase("a", "b", *)       &lt; 0
-     * StrUtil.compareIgnoreCase("b", "a", *)       &gt; 0
-     * StrUtil.compareIgnoreCase("a", "B", *)       &lt; 0
-     * StrUtil.compareIgnoreCase("A", "b", *)       &lt; 0
-     * StrUtil.compareIgnoreCase("ab", "abc", *)    &lt; 0
+     * UStringUtil.compareIgnoreCase(null, null, *)     = 0
+     * UStringUtil.compareIgnoreCase(null , "a", true)  &lt; 0
+     * UStringUtil.compareIgnoreCase(null , "a", false) &gt; 0
+     * UStringUtil.compareIgnoreCase("a", null, true)   &gt; 0
+     * UStringUtil.compareIgnoreCase("a", null, false)  &lt; 0
+     * UStringUtil.compareIgnoreCase("abc", "abc", *)   = 0
+     * UStringUtil.compareIgnoreCase("abc", "ABC", *)   = 0
+     * UStringUtil.compareIgnoreCase("a", "b", *)       &lt; 0
+     * UStringUtil.compareIgnoreCase("b", "a", *)       &gt; 0
+     * UStringUtil.compareIgnoreCase("a", "B", *)       &lt; 0
+     * UStringUtil.compareIgnoreCase("A", "b", *)       &lt; 0
+     * UStringUtil.compareIgnoreCase("ab", "abc", *)    &lt; 0
      * </pre>
      *
      * @param str1       字符串1
@@ -3314,14 +3322,14 @@ public class UStringUtil {
      * null版本排在最小：既：
      *
      * <pre>
-     * StrUtil.compareVersion(null, "v1") &lt; 0
-     * StrUtil.compareVersion("v1", "v1")  = 0
-     * StrUtil.compareVersion(null, null)   = 0
-     * StrUtil.compareVersion("v1", null) &gt; 0
-     * StrUtil.compareVersion("1.0.0", "1.0.2") &lt; 0
-     * StrUtil.compareVersion("1.0.2", "1.0.2a") &lt; 0
-     * StrUtil.compareVersion("1.13.0", "1.12.1c") &gt; 0
-     * StrUtil.compareVersion("V0.0.20170102", "V0.0.20170101") &gt; 0
+     * UStringUtil.compareVersion(null, "v1") &lt; 0
+     * UStringUtil.compareVersion("v1", "v1")  = 0
+     * UStringUtil.compareVersion(null, null)   = 0
+     * UStringUtil.compareVersion("v1", null) &gt; 0
+     * UStringUtil.compareVersion("1.0.0", "1.0.2") &lt; 0
+     * UStringUtil.compareVersion("1.0.2", "1.0.2a") &lt; 0
+     * UStringUtil.compareVersion("1.13.0", "1.12.1c") &gt; 0
+     * UStringUtil.compareVersion("V0.0.20170102", "V0.0.20170101") &gt; 0
      * </pre>
      *
      * @param version1 版本1
@@ -3389,17 +3397,17 @@ public class UStringUtil {
      * 指定范围内查找字符串，忽略大小写<br>
      *
      * <pre>
-     * StrUtil.indexOfIgnoreCase(null, *, *)          = -1
-     * StrUtil.indexOfIgnoreCase(*, null, *)          = -1
-     * StrUtil.indexOfIgnoreCase("", "", 0)           = 0
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "A", 0)  = 0
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 0)  = 2
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "AB", 0) = 1
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 3)  = 5
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 9)  = -1
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", -1) = 2
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "", 2)   = 2
-     * StrUtil.indexOfIgnoreCase("abc", "", 9)        = -1
+     * UStringUtil.indexOfIgnoreCase(null, *, *)          = -1
+     * UStringUtil.indexOfIgnoreCase(*, null, *)          = -1
+     * UStringUtil.indexOfIgnoreCase("", "", 0)           = 0
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "A", 0)  = 0
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 0)  = 2
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "AB", 0) = 1
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 3)  = 5
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 9)  = -1
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", -1) = 2
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "", 2)   = 2
+     * UStringUtil.indexOfIgnoreCase("abc", "", 9)        = -1
      * </pre>
      *
      * @param str       字符串
@@ -3414,17 +3422,17 @@ public class UStringUtil {
      * 指定范围内查找字符串
      *
      * <pre>
-     * StrUtil.indexOfIgnoreCase(null, *, *)          = -1
-     * StrUtil.indexOfIgnoreCase(*, null, *)          = -1
-     * StrUtil.indexOfIgnoreCase("", "", 0)           = 0
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "A", 0)  = 0
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 0)  = 2
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "AB", 0) = 1
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 3)  = 5
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", 9)  = -1
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "B", -1) = 2
-     * StrUtil.indexOfIgnoreCase("aabaabaa", "", 2)   = 2
-     * StrUtil.indexOfIgnoreCase("abc", "", 9)        = -1
+     * UStringUtil.indexOfIgnoreCase(null, *, *)          = -1
+     * UStringUtil.indexOfIgnoreCase(*, null, *)          = -1
+     * UStringUtil.indexOfIgnoreCase("", "", 0)           = 0
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "A", 0)  = 0
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 0)  = 2
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "AB", 0) = 1
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 3)  = 5
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", 9)  = -1
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "B", -1) = 2
+     * UStringUtil.indexOfIgnoreCase("aabaabaa", "", 2)   = 2
+     * UStringUtil.indexOfIgnoreCase("abc", "", 9)        = -1
      * </pre>
      *
      * @param str       字符串
@@ -3540,17 +3548,17 @@ public class UStringUtil {
      * 栗子（*代表任意字符）：
      *
      * <pre>
-     * StrUtil.ordinalIndexOf(null, *, *)          = -1
-     * StrUtil.ordinalIndexOf(*, null, *)          = -1
-     * StrUtil.ordinalIndexOf("", "", *)           = 0
-     * StrUtil.ordinalIndexOf("aabaabaa", "a", 1)  = 0
-     * StrUtil.ordinalIndexOf("aabaabaa", "a", 2)  = 1
-     * StrUtil.ordinalIndexOf("aabaabaa", "b", 1)  = 2
-     * StrUtil.ordinalIndexOf("aabaabaa", "b", 2)  = 5
-     * StrUtil.ordinalIndexOf("aabaabaa", "ab", 1) = 1
-     * StrUtil.ordinalIndexOf("aabaabaa", "ab", 2) = 4
-     * StrUtil.ordinalIndexOf("aabaabaa", "", 1)   = 0
-     * StrUtil.ordinalIndexOf("aabaabaa", "", 2)   = 0
+     * UStringUtil.ordinalIndexOf(null, *, *)          = -1
+     * UStringUtil.ordinalIndexOf(*, null, *)          = -1
+     * UStringUtil.ordinalIndexOf("", "", *)           = 0
+     * UStringUtil.ordinalIndexOf("aabaabaa", "a", 1)  = 0
+     * UStringUtil.ordinalIndexOf("aabaabaa", "a", 2)  = 1
+     * UStringUtil.ordinalIndexOf("aabaabaa", "b", 1)  = 2
+     * UStringUtil.ordinalIndexOf("aabaabaa", "b", 2)  = 5
+     * UStringUtil.ordinalIndexOf("aabaabaa", "ab", 1) = 1
+     * UStringUtil.ordinalIndexOf("aabaabaa", "ab", 2) = 4
+     * UStringUtil.ordinalIndexOf("aabaabaa", "", 1)   = 0
+     * UStringUtil.ordinalIndexOf("aabaabaa", "", 2)   = 0
      * </pre>
      *
      * @param str       被检查的字符串，可以为null
@@ -4165,9 +4173,9 @@ public class UStringUtil {
      * 切换给定字符串中的大小写。大写转小写，小写转大写。
      *
      * <pre>
-     * StrUtil.swapCase(null)                 = null
-     * StrUtil.swapCase("")                   = ""
-     * StrUtil.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
+     * UStringUtil.swapCase(null)                 = null
+     * UStringUtil.swapCase("")                   = ""
+     * UStringUtil.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
      * </pre>
      *
      * @param str 字符串
