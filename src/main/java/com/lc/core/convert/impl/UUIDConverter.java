@@ -8,7 +8,7 @@ import java.util.UUID;
  * UUID对象转换器转换器
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class UUIDConverter extends AbstractConverter<UUID> {
 

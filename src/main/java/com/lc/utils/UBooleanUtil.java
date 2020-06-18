@@ -7,7 +7,8 @@ import com.lc.core.convert.Convert;
  * Full Of ❤Love❤
  *
  * @author LC
- * @since 0.0.1
+ * @version 0.2
+ * @since 0.1
  */
 public class UBooleanUtil {
 
@@ -33,9 +34,9 @@ public class UBooleanUtil {
      * 检查 {@code Boolean} 值是否为 {@code true}
      *
      * <pre>
-     *   BooleanUtil.isTrue(Boolean.TRUE)  = true
-     *   BooleanUtil.isTrue(Boolean.FALSE) = false
-     *   BooleanUtil.isTrue(null)          = false
+     *   UBooleanUtil.isTrue(Boolean.TRUE)  = true
+     *   UBooleanUtil.isTrue(Boolean.FALSE) = false
+     *   UBooleanUtil.isTrue(null)          = false
      * </pre>
      *
      * @param bool 被检查的Boolean值
@@ -49,9 +50,9 @@ public class UBooleanUtil {
      * 检查 {@code Boolean} 值是否为 {@code false}
      *
      * <pre>
-     *   BooleanUtil.isFalse(Boolean.TRUE)  = false
-     *   BooleanUtil.isFalse(Boolean.FALSE) = true
-     *   BooleanUtil.isFalse(null)          = false
+     *   UBooleanUtil.isFalse(Boolean.TRUE)  = false
+     *   UBooleanUtil.isFalse(Boolean.FALSE) = true
+     *   UBooleanUtil.isFalse(null)          = false
      * </pre>
      *
      * @param bool 被检查的Boolean值
@@ -231,8 +232,8 @@ public class UBooleanUtil {
      * 将boolean转换为字符串 {@code 'true'} 或者 {@code 'false'}.
      *
      * <pre>
-     *   BooleanUtil.toStringTrueFalse(true)   = "true"
-     *   BooleanUtil.toStringTrueFalse(false)  = "false"
+     *   UBooleanUtil.toStringTrueFalse(true)   = "true"
+     *   UBooleanUtil.toStringTrueFalse(false)  = "false"
      * </pre>
      *
      * @param bool Boolean值
@@ -246,8 +247,8 @@ public class UBooleanUtil {
      * 将boolean转换为字符串 {@code 'on'} 或者 {@code 'off'}.
      *
      * <pre>
-     *   BooleanUtil.toStringOnOff(true)   = "on"
-     *   BooleanUtil.toStringOnOff(false)  = "off"
+     *   UBooleanUtil.toStringOnOff(true)   = "on"
+     *   UBooleanUtil.toStringOnOff(false)  = "off"
      * </pre>
      *
      * @param bool Boolean值
@@ -261,8 +262,8 @@ public class UBooleanUtil {
      * 将boolean转换为字符串 {@code 'yes'} 或者 {@code 'no'}.
      *
      * <pre>
-     *   BooleanUtil.toStringYesNo(true)   = "yes"
-     *   BooleanUtil.toStringYesNo(false)  = "no"
+     *   UBooleanUtil.toStringYesNo(true)   = "yes"
+     *   UBooleanUtil.toStringYesNo(false)  = "no"
      * </pre>
      *
      * @param bool Boolean值
@@ -276,8 +277,8 @@ public class UBooleanUtil {
      * 将boolean转换为字符串
      *
      * <pre>
-     *   BooleanUtil.toString(true, "true", "false")   = "true"
-     *   BooleanUtil.toString(false, "true", "false")  = "false"
+     *   UBooleanUtil.toString(true, "true", "false")   = "true"
+     *   UBooleanUtil.toString(false, "true", "false")  = "false"
      * </pre>
      *
      * @param bool        Boolean值
@@ -293,11 +294,11 @@ public class UBooleanUtil {
      * 对Boolean数组取与
      *
      * <pre>
-     *   BooleanUtil.and(true, true)         = true
-     *   BooleanUtil.and(false, false)       = false
-     *   BooleanUtil.and(true, false)        = false
-     *   BooleanUtil.and(true, true, false)  = false
-     *   BooleanUtil.and(true, true, true)   = true
+     *   UBooleanUtil.and(true, true)         = true
+     *   UBooleanUtil.and(false, false)       = false
+     *   UBooleanUtil.and(true, false)        = false
+     *   UBooleanUtil.and(true, true, false)  = false
+     *   UBooleanUtil.and(true, true, true)   = true
      * </pre>
      *
      * @param array {@code Boolean}数组
@@ -319,17 +320,19 @@ public class UBooleanUtil {
      * 对Boolean数组取与
      *
      * <pre>
-     *   BooleanUtil.and(Boolean.TRUE, Boolean.TRUE)                 = Boolean.TRUE
-     *   BooleanUtil.and(Boolean.FALSE, Boolean.FALSE)               = Boolean.FALSE
-     *   BooleanUtil.and(Boolean.TRUE, Boolean.FALSE)                = Boolean.FALSE
-     *   BooleanUtil.and(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)   = Boolean.TRUE
-     *   BooleanUtil.and(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE) = Boolean.FALSE
-     *   BooleanUtil.and(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)  = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.TRUE)                 = Boolean.TRUE
+     *   UBooleanUtil.and(Boolean.FALSE, Boolean.FALSE)               = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.FALSE)                = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)   = Boolean.TRUE
+     *   UBooleanUtil.and(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE) = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)  = Boolean.FALSE
      * </pre>
      *
      * @param array {@code Boolean}数组
      * @return 取与为真返回{@code true}
+     * @deprecated 请使用 {@link #andOfWrap(Boolean... array)}
      */
+    @Deprecated
     public static Boolean and(final Boolean... array) {
         if (UArrayUtil.isEmpty(array)) {
             throw new IllegalArgumentException("The Array must not be empty !");
@@ -339,15 +342,38 @@ public class UBooleanUtil {
     }
 
     /**
+     * 对Boolean数组取与
+     *
+     * <pre>
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.TRUE)                 = Boolean.TRUE
+     *   UBooleanUtil.and(Boolean.FALSE, Boolean.FALSE)               = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.FALSE)                = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)   = Boolean.TRUE
+     *   UBooleanUtil.and(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE) = Boolean.FALSE
+     *   UBooleanUtil.and(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)  = Boolean.FALSE
+     * </pre>
+     *
+     * @param array {@code Boolean}数组
+     * @return 取与为真返回{@code true}
+     */
+    public static Boolean andOfWrap(Boolean... array) {
+        if (UArrayUtil.isEmpty(array)) {
+            throw new IllegalArgumentException("The Array must not be empty !");
+        }
+        final boolean[] primitive = Convert.convert(boolean[].class, array);
+        return and(primitive);
+    }
+
+    /**
      * 对Boolean数组取或
      *
      * <pre>
-     *   BooleanUtil.or(true, true)          = true
-     *   BooleanUtil.or(false, false)        = false
-     *   BooleanUtil.or(true, false)         = true
-     *   BooleanUtil.or(true, true, false)   = true
-     *   BooleanUtil.or(true, true, true)    = true
-     *   BooleanUtil.or(false, false, false) = false
+     *   UBooleanUtil.or(true, true)          = true
+     *   UBooleanUtil.or(false, false)        = false
+     *   UBooleanUtil.or(true, false)         = true
+     *   UBooleanUtil.or(true, true, false)   = true
+     *   UBooleanUtil.or(true, true, true)    = true
+     *   UBooleanUtil.or(false, false, false) = false
      * </pre>
      *
      * @param array {@code Boolean}数组
@@ -369,18 +395,20 @@ public class UBooleanUtil {
      * 对Boolean数组取或
      *
      * <pre>
-     *   BooleanUtil.or(Boolean.TRUE, Boolean.TRUE)                  = Boolean.TRUE
-     *   BooleanUtil.or(Boolean.FALSE, Boolean.FALSE)                = Boolean.FALSE
-     *   BooleanUtil.or(Boolean.TRUE, Boolean.FALSE)                 = Boolean.TRUE
-     *   BooleanUtil.or(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)    = Boolean.TRUE
-     *   BooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE)  = Boolean.TRUE
-     *   BooleanUtil.or(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)   = Boolean.TRUE
-     *   BooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE) = Boolean.FALSE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.TRUE)                  = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE)                = Boolean.FALSE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.FALSE)                 = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)    = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE)  = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)   = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE) = Boolean.FALSE
      * </pre>
      *
      * @param array {@code Boolean}数组
      * @return 取或为真返回{@code true}
+     * @deprecated 请使用 {@link #orOfWrap(Boolean... array)}
      */
+    @Deprecated
     public static Boolean or(Boolean... array) {
         if (UArrayUtil.isEmpty(array)) {
             throw new IllegalArgumentException("The Array must not be empty !");
@@ -390,15 +418,39 @@ public class UBooleanUtil {
     }
 
     /**
+     * 对Boolean数组取或
+     *
+     * <pre>
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.TRUE)                  = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE)                = Boolean.FALSE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.FALSE)                 = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.TRUE, Boolean.TRUE)    = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.TRUE)  = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.TRUE, Boolean.FALSE, Boolean.TRUE)   = Boolean.TRUE
+     *   UBooleanUtil.or(Boolean.FALSE, Boolean.FALSE, Boolean.FALSE) = Boolean.FALSE
+     * </pre>
+     *
+     * @param array {@code Boolean}数组
+     * @return 取或为真返回{@code true}
+     */
+    public static Boolean orOfWrap(Boolean... array) {
+        if (UArrayUtil.isEmpty(array)) {
+            throw new IllegalArgumentException("The Array must not be empty !");
+        }
+        final boolean[] primitive = Convert.convert(boolean[].class, array);
+        return or(primitive);
+    }
+
+    /**
      * 对Boolean数组取异或
      *
      * <pre>
-     *   BooleanUtil.xor(true, true)   = false
-     *   BooleanUtil.xor(false, false) = false
-     *   BooleanUtil.xor(true, false)  = true
-     *   BooleanUtil.xor(true, true)   = false
-     *   BooleanUtil.xor(false, false) = false
-     *   BooleanUtil.xor(true, false)  = true
+     *   UBooleanUtil.xor(true, true)   = false
+     *   UBooleanUtil.xor(false, false) = false
+     *   UBooleanUtil.xor(true, false)  = true
+     *   UBooleanUtil.xor(true, true)   = false
+     *   UBooleanUtil.xor(false, false) = false
+     *   UBooleanUtil.xor(true, false)  = true
      * </pre>
      *
      * @param array {@code boolean}数组
@@ -421,19 +473,51 @@ public class UBooleanUtil {
      * 对Boolean数组取异或
      *
      * <pre>
-     *   BooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE
-     *   BooleanUtil.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE
-     *   BooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE
      * </pre>
      *
      * @param array {@code Boolean} 数组
      * @return 异或为真取{@code true}
+     * @deprecated 请使用 {@link #xorOfWrap(Boolean... array)}
      */
+    @Deprecated
     public static Boolean xor(Boolean... array) {
         if (UArrayUtil.isEmpty(array)) {
             throw new IllegalArgumentException("The Array must not be empty !");
         }
         final boolean[] primitive = Convert.convert(boolean[].class, array);
         return Boolean.valueOf(xor(primitive));
+    }
+
+    /**
+     * 对Boolean数组取异或
+     *
+     * <pre>
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.TRUE })   = Boolean.FALSE
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.FALSE, Boolean.FALSE }) = Boolean.FALSE
+     *   UBooleanUtil.xor(new Boolean[] { Boolean.TRUE, Boolean.FALSE })  = Boolean.TRUE
+     * </pre>
+     *
+     * @param array {@code Boolean} 数组
+     * @return 异或为真取{@code true}
+     */
+    public static Boolean xorOfWrap(Boolean... array) {
+        if (UArrayUtil.isEmpty(array)) {
+            throw new IllegalArgumentException("The Array must not be empty !");
+        }
+        final boolean[] primitive = Convert.convert(boolean[].class, array);
+        return xor(primitive);
+    }
+
+    /**
+     * 给定类是否为Boolean或者boolean
+     *
+     * @param clazz 类
+     * @return 是否为Boolean或者boolean
+     */
+    public static boolean isBoolean(Class<?> clazz) {
+        return (clazz == Boolean.class || clazz == boolean.class);
     }
 }

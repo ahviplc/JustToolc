@@ -8,7 +8,7 @@ import java.util.Iterator;
  *
  * @param <E> 元素类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class EnumerationIter<E> implements Iterator<E>, Iterable<E> {
 

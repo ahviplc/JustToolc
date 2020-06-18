@@ -18,12 +18,23 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 字典对象，扩充了HashMap中的方法
+ * 字典对象，扩充了HashMap中的方法<br>
+ * Full Of ❤Love❤<br>
  *
  * @author LC
+ * @version 0.2
+ * @since 0.1
  */
 public class UDict extends LinkedHashMap<String, Object> implements BasicTypeGetter<String> {
     private static final long serialVersionUID = 6135423866861206530L;
+
+    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+    static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+
+    /**
+     * 是否大小写不敏感
+     */
+    private boolean caseInsensitive;
 
     // --------------------------------------------------------------- Static method start
 
@@ -54,7 +65,17 @@ public class UDict extends LinkedHashMap<String, Object> implements BasicTypeGet
      * 构造
      */
     public UDict() {
-        super();
+        //super();
+        this(false);
+    }
+
+    /**
+     * 构造
+     *
+     * @param caseInsensitive 是否大小写不敏感
+     */
+    public UDict(boolean caseInsensitive) {
+        this(DEFAULT_INITIAL_CAPACITY, caseInsensitive);
     }
 
     /**
@@ -63,7 +84,18 @@ public class UDict extends LinkedHashMap<String, Object> implements BasicTypeGet
      * @param initialCapacity 初始容量
      */
     public UDict(int initialCapacity) {
-        super(initialCapacity);
+        //super(initialCapacity);
+        this(initialCapacity, false);
+    }
+
+    /**
+     * 构造
+     *
+     * @param initialCapacity 初始容量
+     * @param caseInsensitive 是否大小写不敏感
+     */
+    public UDict(int initialCapacity, boolean caseInsensitive) {
+        this(initialCapacity, DEFAULT_LOAD_FACTOR, caseInsensitive);
     }
 
     /**
@@ -73,7 +105,20 @@ public class UDict extends LinkedHashMap<String, Object> implements BasicTypeGet
      * @param loadFactor      容量增长因子，0~1，即达到容量的百分之多少时扩容
      */
     public UDict(int initialCapacity, float loadFactor) {
+        //super(initialCapacity, loadFactor);
+        this(initialCapacity, loadFactor, false);
+    }
+
+    /**
+     * 构造
+     *
+     * @param initialCapacity 初始容量
+     * @param loadFactor      容量增长因子，0~1，即达到容量的百分之多少时扩容
+     * @param caseInsensitive 是否大小写不敏感
+     */
+    public UDict(int initialCapacity, float loadFactor, boolean caseInsensitive) {
         super(initialCapacity, loadFactor);
+        this.caseInsensitive = caseInsensitive;
     }
 
     /**
@@ -259,6 +304,17 @@ public class UDict extends LinkedHashMap<String, Object> implements BasicTypeGet
     @Override
     public Object getObj(String key) {
         return super.get(key);
+    }
+
+    /**
+     * 获得特定类型值
+     *
+     * @param <T>  值类型
+     * @param attr 字段名
+     * @return 字段值
+     */
+    public <T> T getBean(String attr) {
+        return get(attr, null);
     }
 
     /**

@@ -7,7 +7,7 @@ import java.util.TimeZone;
  * 日期基本信息获取接口
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public interface DateBasic {
     /**

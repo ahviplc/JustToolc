@@ -9,7 +9,7 @@ import java.util.Map;
  * @param <K> 键类型
  * @param <V> 值类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public abstract class CustomKeyMap<K, V> extends HashMap<K, V> {
     private static final long serialVersionUID = 4043263744224569870L;

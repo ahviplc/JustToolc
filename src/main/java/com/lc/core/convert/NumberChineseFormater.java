@@ -13,7 +13,7 @@ import com.lc.utils.UStringUtil;
  * </pre>
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  **/
 public class NumberChineseFormater {
 

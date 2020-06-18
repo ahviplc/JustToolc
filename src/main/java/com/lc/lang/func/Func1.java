@@ -9,7 +9,7 @@ package com.lc.lang.func;
  * @param <P> 参数类型
  * @param <R> 返回值类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 @FunctionalInterface
 public interface Func1<P, R> {

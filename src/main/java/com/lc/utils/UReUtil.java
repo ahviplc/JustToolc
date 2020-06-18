@@ -23,6 +23,8 @@ import java.util.regex.Pattern;
  * 常用正则请见 {@link Validator}
  *
  * @author LC
+ * @version 0.2
+ * @since 0.1
  */
 public class UReUtil {
 

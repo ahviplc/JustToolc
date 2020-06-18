@@ -14,6 +14,22 @@
 ahviplc/JustToolc 
 >https://github.com/ahviplc/JustToolc
 
+## who is who
+```markdown
+❤fork了 整理了 封装了 来自Hutool的一些工具类和在公司日常开发过程中,一些常用工具类,针对公司开发项目需求的工具类❤
+
+about Hutool:
+
+Hutool — A set of tools that keep Java sweet.
+https://hutool.cn/
+
+looly/hutool: A set of tools that keep Java sweet.
+https://github.com/looly/hutool
+
+hutool: Hutool是一个小而全的Java工具类库，使Java拥有函数式语言般的优雅，让Java语言也可以“甜甜的”。
+https://gitee.com/loolly/hutool
+```
+
 ## slogan
 ```markdown
 ❤JustToolc > Java Tools For U (You)❤

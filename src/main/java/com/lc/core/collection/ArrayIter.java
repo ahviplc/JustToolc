@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
  * 数组Iterator对象
  *
  * @param <E> 元素类型
- * @author Looly
- * @since 0.0.1
+ * @author LC
+ * @since 0.1
  */
 public class ArrayIter<E> implements Iterator<E>, Iterable<E> {
 

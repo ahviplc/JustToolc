@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * {@link AtomicReference}转换器
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 @SuppressWarnings("rawtypes")
 public class AtomicReferenceConverter extends AbstractConverter<AtomicReference> {

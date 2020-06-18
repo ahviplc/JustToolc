@@ -10,7 +10,7 @@ import java.util.Date;
  * Thanks to Apache Commons Lang 3.5
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public interface DateParser extends DateBasic {
 

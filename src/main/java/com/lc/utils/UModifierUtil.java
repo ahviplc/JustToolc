@@ -9,15 +9,12 @@ import java.lang.reflect.Modifier;
  * 修饰符工具类
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class UModifierUtil {
 
     /**
      * 修饰符枚举
-     *
-     * @author LC
-     * @since 0.0.1
      */
     public static enum ModifierType {
         /**

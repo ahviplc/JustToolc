@@ -8,7 +8,7 @@ import java.util.Currency;
  * 货币{@link Currency} 转换器
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class CurrencyConverter extends AbstractConverter<Currency> {
 

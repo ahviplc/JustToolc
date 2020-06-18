@@ -11,7 +11,7 @@ import com.lc.utils.UStringUtil;
  * @param <K> 键类型
  * @param <V> 值类型
  * @author LC
- * @since 0.01
+ * @since 0.1
  */
 public class CamelCaseMap<K, V> extends CustomKeyMap<K, V> {
     private static final long serialVersionUID = 4043263744224569870L;

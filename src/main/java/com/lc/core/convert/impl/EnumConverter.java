@@ -7,7 +7,7 @@ import com.lc.core.convert.AbstractConverter;
  * 无泛型检查的枚举转换器
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class EnumConverter extends AbstractConverter<Object> {

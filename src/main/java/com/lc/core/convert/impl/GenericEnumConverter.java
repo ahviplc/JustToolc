@@ -7,7 +7,7 @@ import com.lc.core.convert.AbstractConverter;
  *
  * @param <E> 枚举类类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class GenericEnumConverter<E extends Enum<E>> extends AbstractConverter<E> {
 

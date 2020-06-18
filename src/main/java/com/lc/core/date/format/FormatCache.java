@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap;
  * Thanks to Apache Commons Lang 3.5
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 abstract class FormatCache<F extends Format> {
 

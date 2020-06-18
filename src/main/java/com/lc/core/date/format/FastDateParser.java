@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  *
  * @author LC
  * @see FastDatePrinter
- * @since 0.0.1
+ * @since 0.1
  */
 class FastDateParser extends AbstractDateBasic implements DateParser {
     private static final long serialVersionUID = -3199383897950947498L;

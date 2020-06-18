@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
  * Full Of ❤Love❤<br>
  *
  * @author LC
+ * @version 0.2
  * @since 0.1
  */
 public class UStringUtil {

@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @param <T> 目标对象类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class BeanCopier<T> implements Copier<T> {
 

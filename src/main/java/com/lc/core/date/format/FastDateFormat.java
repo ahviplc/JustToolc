@@ -26,7 +26,7 @@ import java.util.TimeZone;
  * Thanks to Apache Commons Lang 3.5
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class FastDateFormat extends Format implements DateParser, DatePrinter {
     private static final long serialVersionUID = 8097890768636183236L;

@@ -7,7 +7,8 @@ import com.lc.core.StrBuilder;
  * Full Of ❤Love❤
  *
  * @author LC
- * @since 0.0.1
+ * @version 0.2
+ * @since 0.1
  */
 public class UUnicodeUtil {
 

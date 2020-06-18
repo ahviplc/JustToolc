@@ -1,6 +1,8 @@
 package com.lc.lang;
 
 
+import com.lc.core.Assert;
+import com.lc.utils.UCharUtil;
 import com.lc.utils.UStringUtil;
 
 import static java.lang.System.out;
@@ -12,9 +14,13 @@ import static java.lang.System.err;
 
 /**
  * 命令行（控制台）工具方法类<br>
+ * Full Of ❤Love❤<br>
+ * <p>
  * 此类主要针对{@link System#out} 和 {@link System#err} 做封装。
  *
  * @author LC
+ * @version 0.2
+ * @since 0.1
  */
 
 public class UConsole {
@@ -70,6 +76,28 @@ public class UConsole {
      */
     public static void print(String template, Object... values) {
         out.print(UStringUtil.format(template, values));
+    }
+
+    /**
+     * 打印进度条
+     *
+     * @param showChar 进度条提示字符，例如“#”
+     * @param len      打印长度
+     */
+    public static void printProgress(char showChar, int len) {
+        print("{}{}", UCharUtil.CR, UStringUtil.repeat(showChar, len));
+    }
+
+    /**
+     * 打印进度条
+     *
+     * @param showChar 进度条提示字符，例如“#”
+     * @param totalLen 总长度
+     * @param rate     总长度所占比取值0~1
+     */
+    public static void printProgress(char showChar, int totalLen, double rate) {
+        Assert.isTrue(rate >= 0 && rate <= 1, "Rate must between 0 and 1 (both include)");
+        printProgress(showChar, (int) (totalLen * rate));
     }
 
     /**
@@ -153,5 +181,30 @@ public class UConsole {
      */
     public static String input() {
         return scanner().next();
+    }
+
+    // --------------------------------------------------------------------------------- console lineNumber
+
+    /**
+     * 返回当前位置+行号 (不支持Lambda、内部类、递归内使用)
+     *
+     * @return 返回当前行号
+     */
+    public static String where() {
+        final StackTraceElement stackTraceElement = new Throwable().getStackTrace()[1];
+        final String className = stackTraceElement.getClassName();
+        final String methodName = stackTraceElement.getMethodName();
+        final String fileName = stackTraceElement.getFileName();
+        final Integer lineNumber = stackTraceElement.getLineNumber();
+        return String.format("%s.%s(%s:%s)", className, methodName, fileName, lineNumber);
+    }
+
+    /**
+     * 返回当前行号 (不支持Lambda、内部类、递归内使用)
+     *
+     * @return 返回当前行号
+     */
+    public static Integer lineNumber() {
+        return new Throwable().getStackTrace()[1].getLineNumber();
     }
 }

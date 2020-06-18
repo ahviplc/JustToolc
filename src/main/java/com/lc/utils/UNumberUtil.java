@@ -38,7 +38,7 @@ import java.util.Set;
  * </ul>
  *
  * @author LC
- * @version 0.1
+ * @version 0.2
  * @since 0.1
  */
 public class UNumberUtil {
@@ -740,6 +740,17 @@ public class UNumberUtil {
         return v1.divide(v2, scale, roundingMode);
     }
 
+    /**
+     * 补充Math.ceilDiv() JDK8中添加了和Math.floorDiv()但却没有ceilDiv()
+     *
+     * @param v1 被除数
+     * @param v2 除数
+     * @return 两个参数的商
+     */
+    public static int ceilDiv(int v1, int v2) {
+        return (int) Math.ceil((double) v1 / v2);
+    }
+
     // ------------------------------------------------------------------------------------------- round
 
     /**
@@ -997,6 +1008,28 @@ public class UNumberUtil {
      * @return 格式化后的值
      */
     public static String decimalFormat(String pattern, long value) {
+        return new DecimalFormat(pattern).format(value);
+    }
+
+    /**
+     * 格式化double<br>
+     * 对 {@link DecimalFormat} 做封装<br>
+     *
+     * @param pattern 格式 格式中主要以 # 和 0 两种占位符号来指定数字长度。0 表示如果位数不足则以 0 填充，# 表示只要有可能就把数字拉上这个位置。<br>
+     *                <ul>
+     *                <li>0 =》 取一位整数</li>
+     *                <li>0.00 =》 取一位整数和两位小数</li>
+     *                <li>00.000 =》 取两位整数和三位小数</li>
+     *                <li># =》 取所有整数部分</li>
+     *                <li>#.##% =》 以百分比方式计数，并取两位小数</li>
+     *                <li>#.#####E0 =》 显示为科学计数法，并取五位小数</li>
+     *                <li>,### =》 每三位以逗号进行分隔，例如：299,792,458</li>
+     *                <li>光速大小为每秒,###米 =》 将格式嵌入文本</li>
+     *                </ul>
+     * @param value   值，支持BigDecimal、BigInteger、Number等类型
+     * @return 格式化后的值
+     */
+    public static String decimalFormat(String pattern, Object value) {
         return new DecimalFormat(pattern).format(value);
     }
 
@@ -1722,6 +1755,17 @@ public class UNumberUtil {
      *
      * @param numberArray 数字数组
      * @return 最小值
+     * @see UArrayUtil#min(Comparable[])
+     */
+    public static BigDecimal min(BigDecimal... numberArray) {
+        return UArrayUtil.min(numberArray);
+    }
+
+    /**
+     * 取最小值
+     *
+     * @param numberArray 数字数组
+     * @return 最小值
      * @see UArrayUtil#min(float...)
      */
     public static float min(float... numberArray) {
@@ -1793,6 +1837,17 @@ public class UNumberUtil {
      * @see UArrayUtil#max(float...)
      */
     public static float max(float... numberArray) {
+        return UArrayUtil.max(numberArray);
+    }
+
+    /**
+     * 取最大值
+     *
+     * @param numberArray 数字数组
+     * @return 最大值
+     * @see UArrayUtil#max(Comparable[])
+     */
+    public static BigDecimal max(BigDecimal... numberArray) {
         return UArrayUtil.max(numberArray);
     }
 
@@ -2126,6 +2181,126 @@ public class UNumberUtil {
         } catch (ParseException e) {
             throw new UtilException(e);
         }
+    }
+
+    /**
+     * int值转byte数组，使用大端字节序（高位字节在前，低位字节在后）<br>
+     * 见：http://www.ruanyifeng.com/blog/2016/11/byte-order.html
+     *
+     * @param value 值
+     * @return byte数组
+     */
+    public static byte[] toBytes(int value) {
+        final byte[] result = new byte[4];
+
+        result[0] = (byte) (value >> 24);
+        result[1] = (byte) (value >> 16);
+        result[2] = (byte) (value >> 8);
+        result[3] = (byte) (value /* >> 0 */);
+
+        return result;
+    }
+
+    /**
+     * byte数组转int，使用大端字节序（高位字节在前，低位字节在后）<br>
+     * 见：http://www.ruanyifeng.com/blog/2016/11/byte-order.html
+     *
+     * @param bytes byte数组
+     * @return int
+     */
+    public static int toInt(byte[] bytes) {
+        return (bytes[0] & 0xff) << 24//
+                | (bytes[1] & 0xff) << 16//
+                | (bytes[2] & 0xff) << 8//
+                | (bytes[3] & 0xff);
+    }
+
+    /**
+     * 以无符号字节数组的形式返回传入值。
+     *
+     * @param value 需要转换的值
+     * @return 无符号bytes
+     */
+    public static byte[] toUnsignedByteArray(BigInteger value) {
+        byte[] bytes = value.toByteArray();
+
+        if (bytes[0] == 0) {
+            byte[] tmp = new byte[bytes.length - 1];
+            System.arraycopy(bytes, 1, tmp, 0, tmp.length);
+
+            return tmp;
+        }
+
+        return bytes;
+    }
+
+    /**
+     * 以无符号字节数组的形式返回传入值。
+     *
+     * @param length bytes长度
+     * @param value  需要转换的值
+     * @return 无符号bytes
+     */
+    public static byte[] toUnsignedByteArray(int length, BigInteger value) {
+        byte[] bytes = value.toByteArray();
+        if (bytes.length == length) {
+            return bytes;
+        }
+
+        int start = bytes[0] == 0 ? 1 : 0;
+        int count = bytes.length - start;
+
+        if (count > length) {
+            throw new IllegalArgumentException("standard length exceeded for value");
+        }
+
+        byte[] tmp = new byte[length];
+        System.arraycopy(bytes, start, tmp, tmp.length - count, count);
+        return tmp;
+    }
+
+    /**
+     * 无符号bytes转{@link BigInteger}
+     *
+     * @param buf buf 无符号bytes
+     * @return {@link BigInteger}
+     */
+    public static BigInteger fromUnsignedByteArray(byte[] buf) {
+        return new BigInteger(1, buf);
+    }
+
+    /**
+     * 无符号bytes转{@link BigInteger}
+     *
+     * @param buf    无符号bytes
+     * @param off    起始位置
+     * @param length 长度
+     * @return {@link BigInteger}
+     */
+    public static BigInteger fromUnsignedByteArray(byte[] buf, int off, int length) {
+        byte[] mag = buf;
+        if (off != 0 || length != buf.length) {
+            mag = new byte[length];
+            System.arraycopy(buf, off, mag, 0, length);
+        }
+        return new BigInteger(1, mag);
+    }
+
+    /**
+     * 检查是否为有效的数字<br>
+     * 检查Double和Float是否为无限大，或者Not a Number<br>
+     * 非数字类型和Null将返回true
+     *
+     * @param number 被检查类型
+     * @return 检查结果，非数字类型和Null将返回true
+     */
+    public static boolean isValidNumber(Number number) {
+        if (number instanceof Double) {
+            return (false == ((Double) number).isInfinite()) && (false == ((Double) number).isNaN());
+        } else if (number instanceof Float) {
+            return (false == ((Float) number).isInfinite()) && (false == ((Float) number).isNaN());
+        }
+        return true;
     }
 
     // ------------------------------------------------------------------------------------------- Private method start

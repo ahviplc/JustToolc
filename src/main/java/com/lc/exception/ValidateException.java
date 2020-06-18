@@ -6,7 +6,7 @@ import com.lc.utils.UStringUtil;
  * 验证异常
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class ValidateException extends StatefulException {
     private static final long serialVersionUID = 6057602589533840889L;

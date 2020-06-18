@@ -23,7 +23,7 @@ import java.util.Map;
  * </pre>
  *
  * @author LC
- * @since 0.01
+ * @since 0.1
  */
 public class BeanDesc {
 

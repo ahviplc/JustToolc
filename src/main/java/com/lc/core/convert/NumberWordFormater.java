@@ -8,7 +8,7 @@ import com.lc.utils.UStringUtil;
  * 参考博客：http://blog.csdn.net/eric_sunah/article/details/8713226
  *
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class NumberWordFormater {
 

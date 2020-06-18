@@ -5,7 +5,7 @@ package com.lc.lang.mutable;
  *
  * @param <T> 值得类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public interface Mutable<T> {
 

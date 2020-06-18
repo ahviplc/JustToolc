@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * @author LC
  * @see FastDateParser
- * @since 0.0.1
+ * @since 0.1
  */
 class FastDatePrinter extends AbstractDateBasic implements DatePrinter {
     private static final long serialVersionUID = -6305750172255764887L;

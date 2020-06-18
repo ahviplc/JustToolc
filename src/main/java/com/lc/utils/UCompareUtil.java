@@ -1,13 +1,38 @@
 package com.lc.utils;
 
+import java.util.Comparator;
+
 /**
  * 比较工具类<br>
  * Full Of ❤Love❤
  *
  * @author LC
+ * @version 0.2
  * @since 0.1
  */
 public class UCompareUtil {
+
+    /**
+     * 对象比较，比较结果取决于comparator，如果被比较对象为null，传入的comparator对象应处理此情况<br>
+     * 如果传入comparator为null，则使用默认规则比较（此时被比较对象必须实现Comparable接口）
+     *
+     * <p>
+     * 一般而言，如果c1 &lt; c2，返回数小于0，c1==c2返回0，c1 &gt; c2 大于0
+     *
+     * @param <T>        被比较对象类型
+     * @param c1         对象1
+     * @param c2         对象2
+     * @param comparator 比较器
+     * @return 比较结果
+     * @see java.util.Comparator#compare(Object, Object)
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static <T> int compare(T c1, T c2, Comparator<T> comparator) {
+        if (null == comparator) {
+            return compare((Comparable) c1, (Comparable) c2);
+        }
+        return comparator.compare(c1, c2);
+    }
 
     /**
      * {@code null}安全的对象比较，{@code null}对象排在末尾

@@ -7,7 +7,7 @@ import java.io.Serializable;
  *
  * @param <T> 可变的类型
  * @author LC
- * @since 0.0.1
+ * @since 0.1
  */
 public class MutableObj<T> implements Mutable<T>, Serializable {
     private static final long serialVersionUID = -464493129773743673L;
