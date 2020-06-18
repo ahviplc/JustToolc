@@ -1,9 +1,11 @@
 package com.lc.utils;
 
 import com.lc.core.convert.Convert;
+import com.lc.exception.UtilException;
 import com.lc.lang.Holder;
 import com.lc.lang.PatternPool;
 import com.lc.lang.Validator;
+import com.lc.lang.func.Func1;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +19,7 @@ import java.util.regex.Pattern;
 
 /**
  * 正则相关工具类<br>
+ * Full Of ❤Love❤<br>
  * 常用正则请见 {@link Validator}
  *
  * @author LC
@@ -663,5 +666,43 @@ public class UReUtil {
             builder.append(current);
         }
         return builder.toString();
+    }
+
+    /**
+     * 替换所有正则匹配的文本，并使用自定义函数决定如何替换
+     *
+     * @param str        要替换的字符串
+     * @param regex      用于匹配的正则式
+     * @param replaceFun 决定如何替换的函数
+     * @return 替换后的文本
+     */
+    public static String replaceAll(CharSequence str, String regex, Func1<Matcher, String> replaceFun) {
+        return replaceAll(str, Pattern.compile(regex), replaceFun);
+    }
+
+    /**
+     * 替换所有正则匹配的文本，并使用自定义函数决定如何替换
+     *
+     * @param str        要替换的字符串
+     * @param pattern    用于匹配的正则式
+     * @param replaceFun 决定如何替换的函数,可能被多次调用（当有多个匹配时）
+     * @return 替换后的字符串
+     */
+    public static String replaceAll(CharSequence str, Pattern pattern, Func1<Matcher, String> replaceFun) {
+        if (UStringUtil.isEmpty(str)) {
+            return UStringUtil.str(str);
+        }
+
+        final Matcher matcher = pattern.matcher(str);
+        final StringBuffer buffer = new StringBuffer();
+        while (matcher.find()) {
+            try {
+                matcher.appendReplacement(buffer, replaceFun.call(matcher));
+            } catch (Exception e) {
+                throw new UtilException(e);
+            }
+        }
+        matcher.appendTail(buffer);
+        return buffer.toString();
     }
 }

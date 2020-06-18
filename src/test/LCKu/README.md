@@ -23,6 +23,15 @@ public static boolean equals(char c1, char c2, boolean ignoreCase) {
 }
 ```
 
+### UStringUtil完善了 
+> 完善时间: 2020年6月18日11:19:30
+
+### UConsole完善了 
+> 完善时间: 2020年6月18日11:20:07
+
+### UDict完善了 
+> 完善时间: 2020年6月18日11:20:49
+
 ## 其他
 
 ## 未完待续

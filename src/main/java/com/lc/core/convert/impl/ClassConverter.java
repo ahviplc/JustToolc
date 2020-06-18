@@ -4,7 +4,7 @@ import com.lc.core.convert.AbstractConverter;
 import com.lc.utils.UClassUtil;
 
 /**
- * 类转换器
+ * 类转换器<br>
  * 将类名转换为类
  *
  * @author LC

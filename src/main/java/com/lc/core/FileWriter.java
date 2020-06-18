@@ -9,6 +9,11 @@ import com.lc.utils.UIoUtil;
 import java.io.*;
 import java.nio.charset.Charset;
 
+/**
+ * 文件写入器
+ *
+ * @author LC
+ */
 public class FileWriter extends FileWrapper {
 // ------------------------------------------------------- Constructor start
 

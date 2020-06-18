@@ -10,7 +10,9 @@ import com.lc.utils.UReflectUtil;
 import java.util.Map;
 
 /**
- * Bean转换器，支持：
+ * Bean转换器<br>
+ * <p>
+ * 支持：
  * <pre>
  * Map =》 Bean
  * Bean =》 Bean
@@ -39,7 +41,7 @@ public class BeanConverter<T> extends AbstractConverter<T> {
     /**
      * 构造
      *
-     * @param beanClass 转换成的目标Bean类
+     * @param beanClass   转换成的目标Bean类
      * @param copyOptions Bean转换选项参数
      */
     public BeanConverter(Class<T> beanClass, CopyOptions copyOptions) {
@@ -49,7 +51,7 @@ public class BeanConverter<T> extends AbstractConverter<T> {
 
     @Override
     protected T convertInternal(Object value) {
-        if(value instanceof Map || value instanceof ValueProvider || UBeanUtil.isBean(value.getClass())) {
+        if (value instanceof Map || value instanceof ValueProvider || UBeanUtil.isBean(value.getClass())) {
             //限定被转换对象类型
             return BeanCopier.create(value, UReflectUtil.newInstanceIfPossible(this.beanClass), copyOptions).copy();
         }

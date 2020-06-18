@@ -3,8 +3,8 @@ package com.lc.utils;
 import com.lc.core.StrBuilder;
 
 /**
- * 提供Unicode字符串和普通字符串之间的转换
- * full of love
+ * 提供Unicode字符串和普通字符串之间的转换<br>
+ * Full Of ❤Love❤
  *
  * @author LC
  * @since 0.0.1

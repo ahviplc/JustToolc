@@ -203,13 +203,12 @@ public class UStringUtilTest {
         Assert.assertEquals("|abcdef|", result);
     }
 
-// TODO 待测试
-//    @Test
-//    public void replaceTest4() {
-//        String a = "1039";
-//        String result = UStringUtil.padPre(a, 8, "0"); //在字符串1039前补4个0
-//        Assert.assertEquals("00001039", result);
-//    }
+    @Test
+    public void replaceTest4() {
+        String a = "1039";
+        String result = UStringUtil.padPre(a, 8, "0"); //在字符串1039前补4个0
+        Assert.assertEquals("00001039", result);
+    }
 
     @Test
     public void upperFirstTest() {
@@ -232,20 +231,19 @@ public class UStringUtilTest {
         Assert.assertEquals("ghigh", pre);
     }
 
-// todo 待测试
-//    @Test
-//    public void subByCodePointTest() {
-//        // 🤔👍🍓🤔
-//        String test = "\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53\uD83E\uDD14";
-//
-//        // 不正确的子字符串
-//        String wrongAnswer = UStringUtil.sub(test, 0, 3);
-//        Assert.assertNotEquals("\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53", wrongAnswer);
-//
-//        // 正确的子字符串
-//        String rightAnswer = UStringUtil.subByCodePoint(test, 0, 3);
-//        Assert.assertEquals("\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53", rightAnswer);
-//    }
+    @Test
+    public void subByCodePointTest() {
+        // 🤔👍🍓🤔
+        String test = "\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53\uD83E\uDD14";
+
+        // 不正确的子字符串
+        String wrongAnswer = UStringUtil.sub(test, 0, 3);
+        Assert.assertNotEquals("\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53", wrongAnswer);
+
+        // 正确的子字符串
+        String rightAnswer = UStringUtil.subByCodePoint(test, 0, 3);
+        Assert.assertEquals("\uD83E\uDD14\uD83D\uDC4D\uD83C\uDF53", rightAnswer);
+    }
 
     @Test
     public void subBeforeTest() {
@@ -405,59 +403,59 @@ public class UStringUtilTest {
         Assert.assertTrue(containsAny);
     }
 
-//    @Test
-//    public void centerTest() {
-//        Assert.assertNull(UStringUtil.center(null, 10));
-//        Assert.assertEquals("    ", UStringUtil.center("", 4));
-//        Assert.assertEquals("ab", UStringUtil.center("ab", -1));
-//        Assert.assertEquals(" ab ", UStringUtil.center("ab", 4));
-//        Assert.assertEquals("abcd", UStringUtil.center("abcd", 2));
-//        Assert.assertEquals(" a  ", UStringUtil.center("a", 4));
-//    }
+    @Test
+    public void centerTest() {
+        Assert.assertNull(UStringUtil.center(null, 10));
+        Assert.assertEquals("    ", UStringUtil.center("", 4));
+        Assert.assertEquals("ab", UStringUtil.center("ab", -1));
+        Assert.assertEquals(" ab ", UStringUtil.center("ab", 4));
+        Assert.assertEquals("abcd", UStringUtil.center("abcd", 2));
+        Assert.assertEquals(" a  ", UStringUtil.center("a", 4));
+    }
 
-//    @Test
-//    public void padPreTest() {
-//        Assert.assertNull(UStringUtil.padPre(null, 10, ' '));
-//        Assert.assertEquals("001", UStringUtil.padPre("1", 3, '0'));
-//        Assert.assertEquals("12", UStringUtil.padPre("123", 2, '0'));
-//
-//        Assert.assertNull(UStringUtil.padPre(null, 10, "AA"));
-//        Assert.assertEquals("AB1", UStringUtil.padPre("1", 3, "ABC"));
-//        Assert.assertEquals("12", UStringUtil.padPre("123", 2, "ABC"));
-//    }
+    @Test
+    public void padPreTest() {
+        Assert.assertNull(UStringUtil.padPre(null, 10, ' '));
+        Assert.assertEquals("001", UStringUtil.padPre("1", 3, '0'));
+        Assert.assertEquals("12", UStringUtil.padPre("123", 2, '0'));
 
-//    @Test
-//    public void padAfterTest() {
-//        Assert.assertNull(UStringUtil.padAfter(null, 10, ' '));
-//        Assert.assertEquals("100", UStringUtil.padAfter("1", 3, '0'));
-//        Assert.assertEquals("23", UStringUtil.padAfter("123", 2, '0'));
-//
-//        Assert.assertNull(UStringUtil.padAfter(null, 10, "ABC"));
-//        Assert.assertEquals("1AB", UStringUtil.padAfter("1", 3, "ABC"));
-//        Assert.assertEquals("23", UStringUtil.padAfter("123", 2, "ABC"));
-//    }
+        Assert.assertNull(UStringUtil.padPre(null, 10, "AA"));
+        Assert.assertEquals("AB1", UStringUtil.padPre("1", 3, "ABC"));
+        Assert.assertEquals("12", UStringUtil.padPre("123", 2, "ABC"));
+    }
 
-//    @Test
-//    public void subBetweenAllTest() {
-//        Assert.assertArrayEquals(new String[]{"yz", "abc"}, UStringUtil.subBetweenAll("saho[yz]fdsadp[abc]a", "[", "]"));
-//        Assert.assertArrayEquals(new String[]{"abc"}, UStringUtil.subBetweenAll("saho[yzfdsadp[abc]a]", "[", "]"));
-//        Assert.assertArrayEquals(new String[]{"abc", "abc"}, UStringUtil.subBetweenAll("yabczyabcz", "y", "z"));
-//        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll(null, "y", "z"));
-//        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("", "y", "z"));
-//        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("abc", null, "z"));
-//        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("abc", "y", null));
-//    }
+    @Test
+    public void padAfterTest() {
+        Assert.assertNull(UStringUtil.padAfter(null, 10, ' '));
+        Assert.assertEquals("100", UStringUtil.padAfter("1", 3, '0'));
+        Assert.assertEquals("23", UStringUtil.padAfter("123", 2, '0'));
 
-//    @Test
-//    public void subBetweenAllTest2() {
-//        //issue#861@Github，起始不匹配的时候，应该直接空
-//        String src1 = "/* \n* hutool  */  asdas  /* \n* hutool  */";
-//        String src2 = "/ * hutool  */  asdas  / * hutool  */";
-//
-//        String[] results1 = UStringUtil.subBetweenAll(src1, "/**", "*/");
-//        Assert.assertEquals(0, results1.length);
-//
-//        String[] results2 = UStringUtil.subBetweenAll(src2, "/*", "*/");
-//        Assert.assertEquals(0, results2.length);
-//    }
+        Assert.assertNull(UStringUtil.padAfter(null, 10, "ABC"));
+        Assert.assertEquals("1AB", UStringUtil.padAfter("1", 3, "ABC"));
+        Assert.assertEquals("23", UStringUtil.padAfter("123", 2, "ABC"));
+    }
+
+    @Test
+    public void subBetweenAllTest() {
+        Assert.assertArrayEquals(new String[]{"yz", "abc"}, UStringUtil.subBetweenAll("saho[yz]fdsadp[abc]a", "[", "]"));
+        Assert.assertArrayEquals(new String[]{"abc"}, UStringUtil.subBetweenAll("saho[yzfdsadp[abc]a]", "[", "]"));
+        Assert.assertArrayEquals(new String[]{"abc", "abc"}, UStringUtil.subBetweenAll("yabczyabcz", "y", "z"));
+        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll(null, "y", "z"));
+        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("", "y", "z"));
+        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("abc", null, "z"));
+        Assert.assertArrayEquals(new String[0], UStringUtil.subBetweenAll("abc", "y", null));
+    }
+
+    @Test
+    public void subBetweenAllTest2() {
+        //issue#861@Github，起始不匹配的时候，应该直接空
+        String src1 = "/* \n* hutool  */  asdas  /* \n* hutool  */";
+        String src2 = "/ * hutool  */  asdas  / * hutool  */";
+
+        String[] results1 = UStringUtil.subBetweenAll(src1, "/**", "*/");
+        Assert.assertEquals(0, results1.length);
+
+        String[] results2 = UStringUtil.subBetweenAll(src2, "/*", "*/");
+        Assert.assertEquals(0, results2.length);
+    }
 }

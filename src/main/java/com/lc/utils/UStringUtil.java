@@ -8,6 +8,7 @@ import com.lc.core.comparator.VersionComparator;
 import com.lc.core.convert.Convert;
 import com.lc.core.text.TextSimilarity;
 import com.lc.lang.Matcher;
+import com.lc.lang.func.Func1;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -15,9 +16,11 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
- * 字符串工具类
+ * 字符串工具类<br>
+ * Full Of ❤Love❤<br>
  *
  * @author LC
  * @since 0.1
@@ -317,6 +320,26 @@ public class UStringUtil {
             }
         }
         return true;
+    }
+
+    /**
+     * 是否存都不为{@code null}或空对象，通过{@link UStringUtil#hasEmpty(CharSequence...)} 判断元素
+     *
+     * @param args 被检查的对象,一个或者多个
+     * @return 是否都不为空
+     */
+    public static boolean isAllNotEmpty(CharSequence... args) {
+        return false == hasEmpty(args);
+    }
+
+    /**
+     * 是否存都不为{@code null}或空对象或空白符的对象，通过{@link UStringUtil#hasBlank(CharSequence...)} 判断元素
+     *
+     * @param args 被检查的对象,一个或者多个
+     * @return 是否都不为空
+     */
+    public static boolean isAllNotBlank(CharSequence... args) {
+        return false == hasBlank(args);
     }
 
     /**
@@ -705,12 +728,25 @@ public class UStringUtil {
     }
 
     /**
+     * 指定字符串是否在字符串中出现过
+     *
+     * @param str       字符串
+     * @param searchStr 被查找的字符串
+     * @return 是否包含
+     */
+    public static boolean contains(CharSequence str, CharSequence searchStr) {
+        if (null == str || null == searchStr) {
+            return false;
+        }
+        return str.toString().contains(searchStr);
+    }
+
+    /**
      * 查找指定字符串是否包含指定字符串列表中的任意一个字符串
      *
      * @param str      指定字符串
      * @param testStrs 需要检查的字符串数组
      * @return 是否包含任意一个字符串
-     * @since 3.2.0
      */
     public static boolean containsAny(CharSequence str, CharSequence... testStrs) {
         return null != getContainsStr(str, testStrs);
@@ -733,6 +769,25 @@ public class UStringUtil {
             }
         }
         return false;
+    }
+
+    /**
+     * 检查指定字符串中是否只包含给定的字符
+     *
+     * @param str       字符串
+     * @param testChars 检查的字符
+     * @return 字符串含有非检查的字符，返回false
+     */
+    public static boolean containsOnly(CharSequence str, char... testChars) {
+        if (false == isEmpty(str)) {
+            int len = str.length();
+            for (int i = 0; i < len; i++) {
+                if (false == UArrayUtil.contains(testChars, str.charAt(i))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -874,6 +929,65 @@ public class UStringUtil {
             return str(str);
         }
         return str.toString().replace(strToRemove, EMPTY);
+    }
+
+    /**
+     * 移除字符串中所有给定字符串，当某个字符串出现多次，则全部移除<br>
+     * 例：removeAny("aa-bb-cc-dd", "a", "b") =》 --cc-dd
+     *
+     * @param str          字符串
+     * @param strsToRemove 被移除的字符串
+     * @return 移除后的字符串
+     */
+    public static String removeAny(CharSequence str, CharSequence... strsToRemove) {
+        String result = str(str);
+        if (isNotEmpty(str)) {
+            for (CharSequence strToRemove : strsToRemove) {
+                result = removeAll(str, strToRemove);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 去除字符串中指定的多个字符，如有多个则全部去除
+     *
+     * @param str   字符串
+     * @param chars 字符列表
+     * @return 去除后的字符
+     */
+    public static String removeAll(CharSequence str, char... chars) {
+        if (null == str || UArrayUtil.isEmpty(chars)) {
+            return str(str);
+        }
+        final int len = str.length();
+        if (0 == len) {
+            return str(str);
+        }
+        final StringBuilder builder = builder(len);
+        char c;
+        for (int i = 0; i < len; i++) {
+            c = str.charAt(i);
+            if (false == UArrayUtil.contains(chars, c)) {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 去除所有换行符，包括：
+     *
+     * <pre>
+     * 1. \r
+     * 1. \n
+     * </pre>
+     *
+     * @param str 字符串
+     * @return 处理后的字符串
+     */
+    public static String removeAllLineBreaks(CharSequence str) {
+        return removeAll(str, C_CR, C_LF);
     }
 
     /**
@@ -1463,6 +1577,33 @@ public class UStringUtil {
     }
 
     /**
+     * 通过CodePoint截取字符串，可以截断Emoji
+     *
+     * @param str       String
+     * @param fromIndex 开始的index（包括）
+     * @param toIndex   结束的index（不包括）
+     * @return 字串
+     */
+    public static String subByCodePoint(CharSequence str, int fromIndex, int toIndex) {
+        if (isEmpty(str)) {
+            return str(str);
+        }
+
+        if (fromIndex < 0 || fromIndex > toIndex) {
+            throw new IllegalArgumentException();
+        }
+
+        if (fromIndex == toIndex) {
+            return EMPTY;
+        }
+
+        final StringBuilder sb = new StringBuilder();
+        final int subLen = toIndex - fromIndex;
+        str.toString().codePoints().skip(fromIndex).limit(subLen).forEach(v -> sb.append(Character.toChars(v)));
+        return sb.toString();
+    }
+
+    /**
      * 截取部分字符串，这里一个汉字的长度认为是2
      *
      * @param str    字符串
@@ -1785,6 +1926,48 @@ public class UStringUtil {
     }
 
     /**
+     * 截取指定字符串多段中间部分，不包括标识字符串<br>
+     * <p>
+     * 栗子：
+     *
+     * <pre>
+     * StrUtil.subBetweenAll("wx[b]y[z]", "[", "]") 		= ["b","z"]
+     * StrUtil.subBetweenAll(null, *, *)          			= []
+     * StrUtil.subBetweenAll(*, null, *)          			= []
+     * StrUtil.subBetweenAll(*, *, null)          			= []
+     * StrUtil.subBetweenAll("", "", "")          			= []
+     * StrUtil.subBetweenAll("", "", "]")         			= []
+     * StrUtil.subBetweenAll("", "[", "]")        			= []
+     * StrUtil.subBetweenAll("yabcz", "", "")     			= []
+     * StrUtil.subBetweenAll("yabcz", "y", "z")   			= ["abc"]
+     * StrUtil.subBetweenAll("yabczyabcz", "y", "z")   		= ["abc","abc"]
+     * StrUtil.subBetweenAll("[yabc[zy]abcz]", "[", "]");   = ["zy"]           重叠时只截取内部，
+     * </pre>
+     *
+     * @param str    被切割的字符串
+     * @param prefix 截取开始的字符串标识
+     * @param suffix 截取到的字符串标识
+     * @return 截取后的字符串
+     */
+    public static String[] subBetweenAll(CharSequence str, CharSequence prefix, CharSequence suffix) {
+        if (hasEmpty(str, prefix, suffix) ||
+                // 不包含起始字符串，则肯定没有子串
+                false == contains(str, prefix)) {
+            return new String[0];
+        }
+
+        final List<String> result = new LinkedList<>();
+        final String[] split = split(str, prefix);
+        for (String fragment : split(str, prefix)) {
+            int suffixIndex = fragment.indexOf(suffix.toString());
+            if (suffixIndex > 0) {
+                result.add(fragment.substring(0, suffixIndex));
+            }
+        }
+        return result.toArray(new String[0]);
+    }
+
+    /**
      * 给定字符串是否被字符包围
      *
      * @param str    字符串
@@ -1879,6 +2062,35 @@ public class UStringUtil {
     }
 
     /**
+     * 重复某个字符串到指定长度
+     *
+     * @param str    被重复的字符
+     * @param padLen 指定长度
+     * @return 重复字符字符串
+     */
+    public static String repeatByLength(CharSequence str, int padLen) {
+        if (null == str) {
+            return null;
+        }
+        if (padLen <= 0) {
+            return UStringUtil.EMPTY;
+        }
+        final int strLen = str.length();
+        if (strLen == padLen) {
+            return str.toString();
+        } else if (strLen > padLen) {
+            return subPre(str, padLen);
+        }
+
+        // 重复，直到达到指定长度
+        final char[] padding = new char[padLen];
+        for (int i = 0; i < padLen; i++) {
+            padding[i] = str.charAt(i % strLen);
+        }
+        return new String(padding);
+    }
+
+    /**
      * 重复某个字符串并通过分界符连接
      *
      * <pre>
@@ -1970,6 +2182,52 @@ public class UStringUtil {
         } else {
             return str1.equals(str2);
         }
+    }
+
+    /**
+     * 给定字符串是否与提供的中任一字符串相同（忽略大小写），相同则返回{@code true}，没有相同的返回{@code false}<br>
+     * 如果参与比对的字符串列表为空，返回{@code false}
+     *
+     * @param str1 给定需要检查的字符串
+     * @param strs 需要参与比对的字符串列表
+     * @return 是否相同
+     */
+    public static boolean equalsAnyIgnoreCase(CharSequence str1, CharSequence... strs) {
+        return equalsAny(str1, true, strs);
+    }
+
+    /**
+     * 给定字符串是否与提供的中任一字符串相同，相同则返回{@code true}，没有相同的返回{@code false}<br>
+     * 如果参与比对的字符串列表为空，返回{@code false}
+     *
+     * @param str1 给定需要检查的字符串
+     * @param strs 需要参与比对的字符串列表
+     * @return 是否相同
+     */
+    public static boolean equalsAny(CharSequence str1, CharSequence... strs) {
+        return equalsAny(str1, false, strs);
+    }
+
+    /**
+     * 给定字符串是否与提供的中任一字符串相同，相同则返回{@code true}，没有相同的返回{@code false}<br>
+     * 如果参与比对的字符串列表为空，返回{@code false}
+     *
+     * @param str1       给定需要检查的字符串
+     * @param ignoreCase 是否忽略大小写
+     * @param strs       需要参与比对的字符串列表
+     * @return 是否相同
+     */
+    public static boolean equalsAny(CharSequence str1, boolean ignoreCase, CharSequence... strs) {
+        if (UArrayUtil.isEmpty(strs)) {
+            return false;
+        }
+
+        for (CharSequence str : strs) {
+            if (equals(str1, str, ignoreCase)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -2582,6 +2840,34 @@ public class UStringUtil {
     }
 
     /**
+     * 补充字符串以满足最小长度
+     *
+     * <pre>
+     * StrUtil.padPre(null, *, *);//null
+     * StrUtil.padPre("1", 3, "ABC");//"AB1"
+     * StrUtil.padPre("123", 2, "ABC");//"12"
+     * </pre>
+     *
+     * @param str       字符串
+     * @param minLength 最小长度
+     * @param padStr    补充的字符
+     * @return 补充后的字符串
+     */
+    public static String padPre(CharSequence str, int minLength, CharSequence padStr) {
+        if (null == str) {
+            return null;
+        }
+        final int strLen = str.length();
+        if (strLen == minLength) {
+            return str.toString();
+        } else if (strLen > minLength) {
+            return subPre(str, minLength);
+        }
+
+        return repeatByLength(padStr, minLength - strLen).concat(str.toString());
+    }
+
+    /**
      * 补充字符串以满足最小长度 StrUtil.padPre("1", 3, '0');//"001"
      *
      * @param str       字符串
@@ -2600,13 +2886,73 @@ public class UStringUtil {
     }
 
     /**
+     * 补充字符串以满足最小长度
+     *
+     * <pre>
+     * StrUtil.padAfter(null, *, *);//null
+     * StrUtil.padAfter("1", 3, '0');//"100"
+     * StrUtil.padAfter("123", 2, '0');//"23"
+     * </pre>
+     *
+     * @param str       字符串，如果为<code>null</code>，直接返回null
+     * @param minLength 最小长度
+     * @param padChar   补充的字符
+     * @return 补充后的字符串
+     */
+    public static String padAfter(CharSequence str, int minLength, char padChar) {
+        if (null == str) {
+            return null;
+        }
+        final int strLen = str.length();
+        if (strLen == minLength) {
+            return str.toString();
+        } else if (strLen > minLength) {
+            return sub(str, strLen - minLength, strLen);
+        }
+
+        return str.toString().concat(repeat(padChar, minLength - strLen));
+    }
+
+    /**
+     * 补充字符串以满足最小长度
+     *
+     * <pre>
+     * StrUtil.padAfter(null, *, *);//null
+     * StrUtil.padAfter("1", 3, "ABC");//"1AB"
+     * StrUtil.padAfter("123", 2, "ABC");//"23"
+     * </pre>
+     *
+     * @param str       字符串，如果为<code>null</code>，直接返回null
+     * @param minLength 最小长度
+     * @param padStr    补充的字符
+     * @return 补充后的字符串
+     */
+    public static String padAfter(CharSequence str, int minLength, CharSequence padStr) {
+        if (null == str) {
+            return null;
+        }
+        final int strLen = str.length();
+        if (strLen == minLength) {
+            return str.toString();
+        } else if (strLen > minLength) {
+            return subSufByLength(str, minLength);
+        }
+
+        return str.toString().concat(repeatByLength(padStr, minLength - strLen));
+    }
+
+    /**
      * 补充字符串以满足最小长度 StrUtil.padEnd("1", 3, '0');//"100"
+     * <p>
+     * 请使用方法 padAfter()
      *
      * @param str       字符串，如果为<code>null</code>，按照空串处理
      * @param minLength 最小长度
      * @param padChar   补充的字符
      * @return 补充后的字符串
+     * @deprecated 请使用 {@link #padEnd(CharSequence str, int minLength, char padChar)}
      */
+    @Deprecated
     public static String padEnd(CharSequence str, int minLength, char padChar) {
         if (null == str) {
             str = EMPTY;
@@ -2615,6 +2961,96 @@ public class UStringUtil {
         }
 
         return str.toString().concat(repeat(padChar, minLength - str.length()));
+    }
+
+    /**
+     * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
+     *
+     * <pre>
+     * StrUtil.center(null, *)   = null
+     * StrUtil.center("", 4)     = "    "
+     * StrUtil.center("ab", -1)  = "ab"
+     * StrUtil.center("ab", 4)   = " ab "
+     * StrUtil.center("abcd", 2) = "abcd"
+     * StrUtil.center("a", 4)    = " a  "
+     * </pre>
+     *
+     * @param str  字符串
+     * @param size 指定长度
+     * @return 补充后的字符串
+     */
+    public static String center(CharSequence str, final int size) {
+        return center(str, size, UCharUtil.SPACE);
+    }
+
+    /**
+     * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
+     *
+     * <pre>
+     * StrUtil.center(null, *, *)     = null
+     * StrUtil.center("", 4, ' ')     = "    "
+     * StrUtil.center("ab", -1, ' ')  = "ab"
+     * StrUtil.center("ab", 4, ' ')   = " ab "
+     * StrUtil.center("abcd", 2, ' ') = "abcd"
+     * StrUtil.center("a", 4, ' ')    = " a  "
+     * StrUtil.center("a", 4, 'y')   = "yayy"
+     * StrUtil.center("abc", 7, ' ')   = "  abc  "
+     * </pre>
+     *
+     * @param str     字符串
+     * @param size    指定长度
+     * @param padChar 两边补充的字符
+     * @return 补充后的字符串
+     */
+    public static String center(CharSequence str, final int size, char padChar) {
+        if (str == null || size <= 0) {
+            return str(str);
+        }
+        final int strLen = str.length();
+        final int pads = size - strLen;
+        if (pads <= 0) {
+            return str.toString();
+        }
+        str = padPre(str, strLen + pads / 2, padChar);
+        str = padAfter(str, size, padChar);
+        return str.toString();
+    }
+
+    /**
+     * 居中字符串，两边补充指定字符串，如果指定长度小于字符串，则返回原字符串
+     *
+     * <pre>
+     * StrUtil.center(null, *, *)     = null
+     * StrUtil.center("", 4, " ")     = "    "
+     * StrUtil.center("ab", -1, " ")  = "ab"
+     * StrUtil.center("ab", 4, " ")   = " ab "
+     * StrUtil.center("abcd", 2, " ") = "abcd"
+     * StrUtil.center("a", 4, " ")    = " a  "
+     * StrUtil.center("a", 4, "yz")   = "yayz"
+     * StrUtil.center("abc", 7, null) = "  abc  "
+     * StrUtil.center("abc", 7, "")   = "  abc  "
+     * </pre>
+     *
+     * @param str    字符串
+     * @param size   指定长度
+     * @param padStr 两边补充的字符串
+     * @return 补充后的字符串
+     */
+    public static String center(CharSequence str, final int size, CharSequence padStr) {
+        if (str == null || size <= 0) {
+            return str(str);
+        }
+        if (isEmpty(padStr)) {
+            padStr = SPACE;
+        }
+        final int strLen = str.length();
+        final int pads = size - strLen;
+        if (pads <= 0) {
+            return str.toString();
+        }
+        str = padPre(str, strLen + pads / 2, padStr);
+        str = padAfter(str, size, padStr);
+        return str.toString();
     }
 
     /**
@@ -3455,6 +3891,32 @@ public class UStringUtil {
     }
 
     /**
+     * 替换所有正则匹配的文本，并使用自定义函数决定如何替换
+     *
+     * @param str        要替换的字符串
+     * @param pattern    用于匹配的正则式
+     * @param replaceFun 决定如何替换的函数
+     * @return 替换后的字符串
+     * @see UReUtil#replaceAll(CharSequence, Pattern, Func1)
+     */
+    public static String replace(CharSequence str, Pattern pattern, Func1<java.util.regex.Matcher, String> replaceFun) {
+        return UReUtil.replaceAll(str, pattern, replaceFun);
+    }
+
+    /**
+     * 替换所有正则匹配的文本，并使用自定义函数决定如何替换
+     *
+     * @param str        要替换的字符串
+     * @param regex      用于匹配的正则式
+     * @param replaceFun 决定如何替换的函数
+     * @return 替换后的字符串
+     * @see UReUtil#replaceAll(CharSequence, String, Func1)
+     */
+    public static String replace(CharSequence str, String regex, Func1<java.util.regex.Matcher, String> replaceFun) {
+        return UReUtil.replaceAll(str, regex, replaceFun);
+    }
+
+    /**
      * 替换指定字符串的指定区间内字符为"*"
      *
      * @param str          字符串
@@ -3627,6 +4089,107 @@ public class UStringUtil {
             sb.append(isNullToEmpty ? nullToEmpty(str) : str);
         }
         return sb.toString();
+    }
+
+    /**
+     * 给定字符串中的字母是否全部为大写，判断依据如下：
+     *
+     * <pre>
+     * 1. 大写字母包括A-Z
+     * 2. 其它非字母的Unicode符都算作大写
+     * </pre>
+     *
+     * @param str 被检查的字符串
+     * @return 是否全部为大写
+     */
+    public static boolean isUpperCase(CharSequence str) {
+        if (null == str) {
+            return false;
+        }
+        final int len = str.length();
+        for (int i = 0; i < len; i++) {
+            if (Character.isLowerCase(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 给定字符串中的字母是否全部为小写，判断依据如下：
+     *
+     * <pre>
+     * 1. 小写字母包括a-z
+     * 2. 其它非字母的Unicode符都算作小写
+     * </pre>
+     *
+     * @param str 被检查的字符串
+     * @return 是否全部为小写
+     */
+    public static boolean isLowerCase(CharSequence str) {
+        if (null == str) {
+            return false;
+        }
+        final int len = str.length();
+        for (int i = 0; i < len; i++) {
+            if (Character.isUpperCase(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 获取字符串的长度，如果为null返回0
+     *
+     * @param cs a 字符串
+     * @return 字符串的长度，如果为null返回0
+     */
+    public static int length(CharSequence cs) {
+        return cs == null ? 0 : cs.length();
+    }
+
+    /**
+     * 给定字符串转为bytes后的byte数（byte长度）
+     *
+     * @param cs      字符串
+     * @param charset 编码
+     * @return byte长度
+     */
+    public static int byteLength(CharSequence cs, Charset charset) {
+        return cs == null ? 0 : cs.toString().getBytes(charset).length;
+    }
+
+    /**
+     * 切换给定字符串中的大小写。大写转小写，小写转大写。
+     *
+     * <pre>
+     * StrUtil.swapCase(null)                 = null
+     * StrUtil.swapCase("")                   = ""
+     * StrUtil.swapCase("The dog has a BONE") = "tHE DOG HAS A bone"
+     * </pre>
+     *
+     * @param str 字符串
+     * @return 交换后的字符串
+     */
+    public static String swapCase(final String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+
+        final char[] buffer = str.toCharArray();
+
+        for (int i = 0; i < buffer.length; i++) {
+            final char ch = buffer[i];
+            if (Character.isUpperCase(ch)) {
+                buffer[i] = Character.toLowerCase(ch);
+            } else if (Character.isTitleCase(ch)) {
+                buffer[i] = Character.toLowerCase(ch);
+            } else if (Character.isLowerCase(ch)) {
+                buffer[i] = Character.toUpperCase(ch);
+            }
+        }
+        return new String(buffer);
     }
 
     /**

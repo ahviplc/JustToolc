@@ -4,7 +4,7 @@ package com.lc.core.date;
 import java.util.Calendar;
 
 /**
- * 星期枚举
+ * 星期枚举<br>
  * 与Calendar中的星期int值对应
  *
  * @author LC

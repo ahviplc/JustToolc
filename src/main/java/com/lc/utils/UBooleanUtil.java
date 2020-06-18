@@ -3,8 +3,8 @@ package com.lc.utils;
 import com.lc.core.convert.Convert;
 
 /**
- * Boolean类型相关工具类
- * full of love
+ * Boolean类型相关工具类<br>
+ * Full Of ❤Love❤
  *
  * @author LC
  * @since 0.0.1

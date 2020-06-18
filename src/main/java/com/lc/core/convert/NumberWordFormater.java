@@ -4,6 +4,7 @@ import com.lc.utils.UStringUtil;
 
 /**
  * 将浮点数类型的number转换成英语的表达方式 <br>
+ * <p>
  * 参考博客：http://blog.csdn.net/eric_sunah/article/details/8713226
  *
  * @author LC

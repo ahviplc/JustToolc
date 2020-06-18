@@ -3,7 +3,8 @@ package com.lc.core.convert;
 import com.lc.utils.UStringUtil;
 
 /**
- * 数字转中文类
+ * 数字转中文类<br>
+ * <p>
  * 包括：
  * <pre>
  * 1. 数字转中文大写形式，比如一百二十一

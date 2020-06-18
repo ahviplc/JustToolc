@@ -9,7 +9,7 @@ import java.nio.charset.Charset;
 
 
 /**
- * 基于快速缓冲FastByteBuffer的OutputStream，随着数据的增长自动扩充缓冲区
+ * 基于快速缓冲FastByteBuffer的OutputStream，随着数据的增长自动扩充缓冲区<br>
  * <p>
  * 可以通过{@link #toByteArray()}和 {@link #toString()}来获取数据
  * <p>

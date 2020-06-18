@@ -3,7 +3,7 @@ package com.lc.utils;
 import com.lc.core.ASCIIStrCache;
 
 /**
- * 字符工具类
+ * 字符工具类<br>
  * 部分工具来自于Apache Commons系列
  *
  * @author LC

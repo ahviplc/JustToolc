@@ -1,7 +1,7 @@
 package com.lc.utils;
 
 /**
- * 比较工具类
+ * 比较工具类<br>
  * Full Of ❤Love❤
  *
  * @author LC

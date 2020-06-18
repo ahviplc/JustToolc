@@ -5,8 +5,8 @@ import com.lc.lang.Snowflake;
 import com.lc.lang.UUID;
 
 /**
- * ID生成器工具类，此工具类中主要封装：
- *
+ * ID生成器工具类<br>
+ * 此工具类中主要封装：
  * <pre>
  * 1. 唯一性ID生成器：UUID、ObjectId（MongoDB）、Snowflake
  * </pre>

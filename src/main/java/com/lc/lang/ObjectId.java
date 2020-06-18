@@ -11,9 +11,9 @@ import java.util.Enumeration;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * MongoDB ID生成策略实现
+ * MongoDB ID生成策略实现<br>
+ * <p>
  * ObjectId由以下几部分组成：
- *
  * <pre>
  * 1. Time 时间戳。
  * 2. Machine 所在主机的唯一标识符，一般是机器主机名的散列值。
