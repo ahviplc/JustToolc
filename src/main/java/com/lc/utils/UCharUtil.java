@@ -33,12 +33,12 @@ public class UCharUtil {
      * 是否为ASCII字符，ASCII字符位于0~127之间
      *
      * <pre>
-     *   CharUtil.isAscii('a')  = true
-     *   CharUtil.isAscii('A')  = true
-     *   CharUtil.isAscii('3')  = true
-     *   CharUtil.isAscii('-')  = true
-     *   CharUtil.isAscii('\n') = true
-     *   CharUtil.isAscii('&copy;') = false
+     *   UCharUtil.isAscii('a')  = true
+     *   UCharUtil.isAscii('A')  = true
+     *   UCharUtil.isAscii('3')  = true
+     *   UCharUtil.isAscii('-')  = true
+     *   UCharUtil.isAscii('\n') = true
+     *   UCharUtil.isAscii('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符处
@@ -52,12 +52,12 @@ public class UCharUtil {
      * 是否为可见ASCII字符，可见字符位于32~126之间
      *
      * <pre>
-     *   CharUtil.isAsciiPrintable('a')  = true
-     *   CharUtil.isAsciiPrintable('A')  = true
-     *   CharUtil.isAsciiPrintable('3')  = true
-     *   CharUtil.isAsciiPrintable('-')  = true
-     *   CharUtil.isAsciiPrintable('\n') = false
-     *   CharUtil.isAsciiPrintable('&copy;') = false
+     *   UCharUtil.isAsciiPrintable('a')  = true
+     *   UCharUtil.isAsciiPrintable('A')  = true
+     *   UCharUtil.isAsciiPrintable('3')  = true
+     *   UCharUtil.isAsciiPrintable('-')  = true
+     *   UCharUtil.isAsciiPrintable('\n') = false
+     *   UCharUtil.isAsciiPrintable('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符处
@@ -71,12 +71,12 @@ public class UCharUtil {
      * 是否为ASCII控制符（不可见字符），控制符位于0~31和127
      *
      * <pre>
-     *   CharUtil.isAsciiControl('a')  = false
-     *   CharUtil.isAsciiControl('A')  = false
-     *   CharUtil.isAsciiControl('3')  = false
-     *   CharUtil.isAsciiControl('-')  = false
-     *   CharUtil.isAsciiControl('\n') = true
-     *   CharUtil.isAsciiControl('&copy;') = false
+     *   UCharUtil.isAsciiControl('a')  = false
+     *   UCharUtil.isAsciiControl('A')  = false
+     *   UCharUtil.isAsciiControl('3')  = false
+     *   UCharUtil.isAsciiControl('-')  = false
+     *   UCharUtil.isAsciiControl('\n') = true
+     *   UCharUtil.isAsciiControl('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符
@@ -91,12 +91,12 @@ public class UCharUtil {
      * 字母包括A~Z和a~z
      *
      * <pre>
-     *   CharUtil.isLetter('a')  = true
-     *   CharUtil.isLetter('A')  = true
-     *   CharUtil.isLetter('3')  = false
-     *   CharUtil.isLetter('-')  = false
-     *   CharUtil.isLetter('\n') = false
-     *   CharUtil.isLetter('&copy;') = false
+     *   UCharUtil.isLetter('a')  = true
+     *   UCharUtil.isLetter('A')  = true
+     *   UCharUtil.isLetter('3')  = false
+     *   UCharUtil.isLetter('-')  = false
+     *   UCharUtil.isLetter('\n') = false
+     *   UCharUtil.isLetter('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符
@@ -112,12 +112,12 @@ public class UCharUtil {
      * </p>
      *
      * <pre>
-     *   CharUtil.isLetterUpper('a')  = false
-     *   CharUtil.isLetterUpper('A')  = true
-     *   CharUtil.isLetterUpper('3')  = false
-     *   CharUtil.isLetterUpper('-')  = false
-     *   CharUtil.isLetterUpper('\n') = false
-     *   CharUtil.isLetterUpper('&copy;') = false
+     *   UCharUtil.isLetterUpper('a')  = false
+     *   UCharUtil.isLetterUpper('A')  = true
+     *   UCharUtil.isLetterUpper('3')  = false
+     *   UCharUtil.isLetterUpper('-')  = false
+     *   UCharUtil.isLetterUpper('\n') = false
+     *   UCharUtil.isLetterUpper('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符
@@ -133,12 +133,12 @@ public class UCharUtil {
      * </p>
      *
      * <pre>
-     *   CharUtil.isLetterLower('a')  = true
-     *   CharUtil.isLetterLower('A')  = false
-     *   CharUtil.isLetterLower('3')  = false
-     *   CharUtil.isLetterLower('-')  = false
-     *   CharUtil.isLetterLower('\n') = false
-     *   CharUtil.isLetterLower('&copy;') = false
+     *   UCharUtil.isLetterLower('a')  = true
+     *   UCharUtil.isLetterLower('A')  = false
+     *   UCharUtil.isLetterLower('3')  = false
+     *   UCharUtil.isLetterLower('-')  = false
+     *   UCharUtil.isLetterLower('\n') = false
+     *   UCharUtil.isLetterLower('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符
@@ -154,12 +154,12 @@ public class UCharUtil {
      * </p>
      *
      * <pre>
-     *   CharUtil.isNumber('a')  = false
-     *   CharUtil.isNumber('A')  = false
-     *   CharUtil.isNumber('3')  = true
-     *   CharUtil.isNumber('-')  = false
-     *   CharUtil.isNumber('\n') = false
-     *   CharUtil.isNumber('&copy;') = false
+     *   UCharUtil.isNumber('a')  = false
+     *   UCharUtil.isNumber('A')  = false
+     *   UCharUtil.isNumber('3')  = true
+     *   UCharUtil.isNumber('-')  = false
+     *   UCharUtil.isNumber('\n') = false
+     *   UCharUtil.isNumber('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符
@@ -188,12 +188,12 @@ public class UCharUtil {
      * 是否为字符或数字，包括A~Z、a~z、0~9
      *
      * <pre>
-     *   CharUtil.isLetterOrNumber('a')  = true
-     *   CharUtil.isLetterOrNumber('A')  = true
-     *   CharUtil.isLetterOrNumber('3')  = true
-     *   CharUtil.isLetterOrNumber('-')  = false
-     *   CharUtil.isLetterOrNumber('\n') = false
-     *   CharUtil.isLetterOrNumber('&copy;') = false
+     *   UCharUtil.isLetterOrNumber('a')  = true
+     *   UCharUtil.isLetterOrNumber('A')  = true
+     *   UCharUtil.isLetterOrNumber('3')  = true
+     *   UCharUtil.isLetterOrNumber('-')  = false
+     *   UCharUtil.isLetterOrNumber('\n') = false
+     *   UCharUtil.isLetterOrNumber('&copy;') = false
      * </pre>
      *
      * @param ch 被检查的字符

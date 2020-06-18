@@ -410,7 +410,7 @@ public class UDateUtil {
         } else if (datepart.equals("ss")) {
             cal.add(Calendar.SECOND, number);
         } else {
-            throw new IllegalArgumentException("DateUtil.addDate()方法非法参数值："
+            throw new IllegalArgumentException("UDateUtil.addDate()方法非法参数值："
                     + datepart);
         }
         return cal.getTime();
@@ -476,7 +476,7 @@ public class UDateUtil {
         try {
             return sdf.parse(date);
         } catch (Exception e) {
-            throw new RuntimeException("DateUtil.convert():"
+            throw new RuntimeException("UDateUtil.convert():"
                     + e.getMessage());
         }
     }
@@ -621,7 +621,7 @@ public class UDateUtil {
     public static double dateDiff(String datepart, Date startdate, Date enddate) {
 
         if (datepart == null || datepart.equals("")) {
-            throw new IllegalArgumentException("DateUtil.dateDiff()方法非法参数值："
+            throw new IllegalArgumentException("UDateUtil.dateDiff()方法非法参数值："
                     + datepart);
         }
 
@@ -635,7 +635,7 @@ public class UDateUtil {
         } else if (datepart.equals("dd")) {
             return days;
         } else {
-            throw new IllegalArgumentException("DateUtil.dateDiff()方法非法参数值："
+            throw new IllegalArgumentException("UDateUtil.dateDiff()方法非法参数值："
                     + datepart);
         }
         return days;

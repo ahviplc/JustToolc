@@ -2954,7 +2954,6 @@ public class UStringUtil {
      * UStringUtil.padEnd("1", 3, '0');//"100"
      * <pre>
      *
-     *
      * @param str       字符串，如果为<code>null</code>，按照空串处理
      * @param minLength 最小长度
      * @param padChar   补充的字符

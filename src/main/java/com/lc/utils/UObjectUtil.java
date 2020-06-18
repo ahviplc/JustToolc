@@ -140,11 +140,11 @@ public class UObjectUtil {
      * 如果给定对象为{@code null}返回默认值
      *
      * <pre>
-     * ObjectUtil.defaultIfNull(null, null)      = null
-     * ObjectUtil.defaultIfNull(null, "")        = ""
-     * ObjectUtil.defaultIfNull(null, "zz")      = "zz"
-     * ObjectUtil.defaultIfNull("abc", *)        = "abc"
-     * ObjectUtil.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
+     * UObjectUtil.defaultIfNull(null, null)      = null
+     * UObjectUtil.defaultIfNull(null, "")        = ""
+     * UObjectUtil.defaultIfNull(null, "zz")      = "zz"
+     * UObjectUtil.defaultIfNull("abc", *)        = "abc"
+     * UObjectUtil.defaultIfNull(Boolean.TRUE, *) = Boolean.TRUE
      * </pre>
      *
      * @param <T>          对象类型
