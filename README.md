@@ -11,8 +11,11 @@
 ```
 
 ## fork me
-ahviplc/JustToolc 
->https://github.com/ahviplc/JustToolc
+ahviplc/JustToolc: ❤JustToolc > Java Tools For U (You) ❤
+> https://github.com/ahviplc/JustToolc
+
+JustToolc: ❤JustToolc > Java Tools For U (You) ❤
+> https://gitee.com/ahviplc/JustToolc
 
 ## who is who
 ```markdown
@@ -38,6 +41,9 @@ https://gitee.com/loolly/hutool
 ## changelog 
 src/test/LCKu
 > https://github.com/ahviplc/JustToolc/tree/master/src/test/LCKu
+
+src/test/LCKu · ahviplc/JustToolc - 码云 - 开源中国
+> https://gitee.com/ahviplc/JustToolc/tree/master/src/test/LCKu
 
 ## maven命令操作
 maven清理命令 
@@ -75,6 +81,7 @@ JustToolc的maven一行命令生成
 ```
 
 ## maven项目使用
+> TODO 待完成 现在还不支持.
 ```xml
 <!--全局使用-->
 <dependency>
