@@ -17,6 +17,29 @@ import java.nio.charset.Charset;
  * @author LC
  */
 public class FileReader extends FileWrapper {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 创建 FileReader
+     *
+     * @param file    文件
+     * @param charset 编码，使用 {@link UCharsetUtil}
+     * @return {@link FileReader}
+     */
+    public static FileReader create(File file, Charset charset) {
+        return new FileReader(file, charset);
+    }
+
+    /**
+     * 创建 FileReader, 编码：{@link FileWrapper#DEFAULT_CHARSET}
+     *
+     * @param file 文件
+     * @return {@link FileReader}
+     */
+    public static FileReader create(File file) {
+        return new FileReader(file);
+    }
+
     // ------------------------------------------------------- Constructor start
 
     /**
@@ -80,17 +103,6 @@ public class FileReader extends FileWrapper {
         this(filePath, DEFAULT_CHARSET);
     }
     // ------------------------------------------------------- Constructor end
-
-    /**
-     * 创建 FileReader
-     *
-     * @param file    文件
-     * @param charset 编码，使用 {@link UCharsetUtil}
-     * @return {@link FileReader}
-     */
-    public static FileReader create(File file, Charset charset) {
-        return new FileReader(file, charset);
-    }
 
     /**
      * 读取文件内容

@@ -13,6 +13,12 @@ public class UHexUtilTest {
 
         UConsole.log(UHexUtil.decodeHexStr("313233")); // 123
         UConsole.log(UHexUtil.decodeHexStr("616263")); // abc
+
+        byte[] aabbccdds_byte = UHexUtil.decodeHex("aabbccdd");
+        UConsole.log(aabbccdds_byte[0]); // -86
+        UConsole.log(aabbccdds_byte[1]); // -69
+        UConsole.log(aabbccdds_byte[2]); // -52
+        UConsole.log(aabbccdds_byte[3]); // -35
     }
 
     @Test

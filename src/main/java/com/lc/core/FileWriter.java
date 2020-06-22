@@ -15,6 +15,30 @@ import java.nio.charset.Charset;
  * @author LC
  */
 public class FileWriter extends FileWrapper {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 创建 FileWriter
+     *
+     * @param file    文件
+     * @param charset 编码，使用 {@link UCharsetUtil}
+     * @return {@link FileWriter}
+     */
+    public static FileWriter create(File file, Charset charset) {
+        return new FileWriter(file, charset);
+    }
+
+    /**
+     * 创建 FileWriter, 编码：{@link FileWrapper#DEFAULT_CHARSET}
+     *
+     * @param file 文件
+     * @return {@link FileWriter}
+     */
+    public static FileWriter create(File file) {
+        return new FileWriter(file);
+    }
+
 // ------------------------------------------------------- Constructor start
 
     /**
@@ -80,17 +104,6 @@ public class FileWriter extends FileWrapper {
     // ------------------------------------------------------- Constructor end
 
     /**
-     * 创建 FileWriter
-     *
-     * @param file    文件
-     * @param charset 编码，使用 {@link UCharsetUtil}
-     * @return {@link FileWriter}
-     */
-    public static FileWriter create(File file, Charset charset) {
-        return new FileWriter(file, charset);
-    }
-
-    /**
      * 将String写入文件，覆盖模式
      *
      * @param content 写入的内容
@@ -148,5 +161,29 @@ public class FileWriter extends FileWrapper {
         if (this.file.exists() && false == file.isFile()) {
             throw new IORuntimeException("File [{}] is not a file !", this.file.getAbsoluteFile());
         }
+    }
+
+    /**
+     * 写入数据到文件
+     *
+     * @param data     数据
+     * @param off      数据开始位置
+     * @param len      数据长度
+     * @param isAppend 是否追加模式
+     * @return 目标文件
+     * @throws IORuntimeException IO异常
+     */
+    public File write(byte[] data, int off, int len, boolean isAppend) throws IORuntimeException {
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(UFileUtil.touch(file), isAppend);
+            out.write(data, off, len);
+            out.flush();
+        } catch (IOException e) {
+            throw new IORuntimeException(e);
+        } finally {
+            UIoUtil.close(out);
+        }
+        return file;
     }
 }
