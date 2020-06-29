@@ -1,6 +1,6 @@
 package com.lc.utils;
 
-import com.lc.core.cache.singleCache.impl.CacheManagerImpl;
+import com.lc.core.cache.singleCache.UCache;
 
 /**
  * 单例缓存工具类
@@ -19,7 +19,7 @@ public class UCacheUtil {
      *
      * @return 获取到的单例缓存对象
      */
-    public static CacheManagerImpl getSingleCache() {
-        return CacheManagerImpl.getInstance();
+    public static UCache getSingleCache() {
+        return UCache.getInstance();
     }
 }

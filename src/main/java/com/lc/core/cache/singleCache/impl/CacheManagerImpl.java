@@ -2,6 +2,8 @@ package com.lc.core.cache.singleCache.impl;
 
 import com.lc.core.cache.singleCache.EntityCache;
 import com.lc.core.cache.singleCache.ICacheManager;
+import com.lc.core.cache.singleCache.UCache;
+import com.lc.utils.UCacheUtil;
 
 import java.util.Map;
 import java.util.Set;
@@ -9,40 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ICacheManager接口的具体实现
- * <p>
- * 懒汉单例模式-双重锁模式
- * <p>
- * 线程安全，延迟初始化。这种方式采用双锁机制，安全且在多线程情况下能保持高性能。
- * <p>
- * 设计模式之单例模式 - 简书<br>
- * https://www.jianshu.com/p/3bfd916f2bb2
  *
  * @author LC
  * @since 0.2.0
  */
 public class CacheManagerImpl implements ICacheManager {
     private static Map<String, EntityCache> caches = new ConcurrentHashMap<String, EntityCache>();
-    // 实例化对象
-    private volatile static CacheManagerImpl instance;
 
-    // 无参构造器私有化
-    private CacheManagerImpl() {
-    }
-
-    /**
-     * 单例获取实例对象
-     *
-     * @return 对象
-     */
-    public static CacheManagerImpl getInstance() {
-        if (instance == null) {
-            synchronized (CacheManagerImpl.class) {
-                if (instance == null) {
-                    instance = new CacheManagerImpl();
-                }
-            }
-        }
-        return instance;
+    // 无参构造器
+    public CacheManagerImpl() {
     }
 
     /**
