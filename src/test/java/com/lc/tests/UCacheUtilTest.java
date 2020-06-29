@@ -32,12 +32,15 @@ public class UCacheUtilTest {
         UConsole.log(cacheManagerImpl.isTimeOut("myTest"));
         UConsole.log(cacheManagerImpl2.isTimeOut("test"));
 
+        // 输出全部jey
+        UConsole.log("全部key:{}", cacheManagerImpl.getAllKeys());
+
         // 测试CacheListener监听
         testCacheListener();
     }
 
     /**
-     *
+     * testCacheListener()
      */
     public static void testCacheListener() {
         // 新建单例实例化缓存对象
