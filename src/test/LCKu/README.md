@@ -74,14 +74,20 @@ public static boolean equals(char c1, char c2, boolean ignoreCase) {
 
 ## realease log
 
-release v0.1
-> 在16commits处 tag v0.1 release.
+release v0.1.0
+> 在19commits处 tag v0.1.0 release.
 ```markdown
-make UStringUtil perfect again.  
-84468f7d ahviplc <ahlc@sina.cn> on 2020/6/18 at 16:10
+merge dev with no-ff. 
+a143b181 LC <ahlc@sina.cn> on 2020/6/20 at 9:59
 ```
 
-release vx.x
+release v0.2.0
+> 在Xcommits处 tag v0.2.0 release.
+```markdown
+TODO
+```
+
+release vx.x.x
 ```markdown
 TODO
 ```
