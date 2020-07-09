@@ -87,14 +87,14 @@ JustToolc的maven一行命令生成
 <dependency>
     <groupId>com.lc</groupId>
     <artifactId>\JustToolc</artifactId>
-    <version>0.1</version>
+    <version>0.1.0</version>
 </dependency>
 
 <!--使用范围只在test-->
 <dependency>
     <groupId>com.lc</groupId>
     <artifactId>\JustToolc</artifactId>
-    <version>0.1</version>
+    <version>0.1.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -102,6 +102,6 @@ JustToolc的maven一行命令生成
 ```markdown
 By LC
 寄语:一人一世界,一树一菩提!~LC
-Version 0.1 From 20200610 
+Version 0.1.0 From 20200610 
 ```
 

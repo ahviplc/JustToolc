@@ -12,8 +12,9 @@ public class UStringUtilTest {
     public static void main(String[] args) {
         System.out.println(UStringUtil.toUpper("lc")); // LC
         System.out.println(UStringUtil.toLower("LC")); // lc
-        UConsole.log(UStringUtil.padEnd("3", 8, '0')); // 30000000
-        UConsole.log(UStringUtil.padEnd("3", 8, "8".charAt(0))); // 38888888
+        // 过期方法
+        //UConsole.log(UStringUtil.padEnd("3", 8, '0')); // 30000000
+        //UConsole.log(UStringUtil.padEnd("3", 8, "8".charAt(0))); // 38888888
     }
 
     @Test

@@ -310,4 +310,43 @@ public class UFileUtil {
         int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
         return new DecimalFormat("#,##0.##").format(size / Math.pow(1024, digitGroups)) + " " + units[digitGroups];
     }
+
+    /**
+     * 读取文件所有数据<br>
+     * 文件的长度不能超过Integer.MAX_VALUE
+     *
+     * @param file 文件
+     * @return 字节码
+     * @throws IORuntimeException IO异常
+     */
+    public static byte[] readBytes(File file) throws IORuntimeException {
+        return FileReader.create(file).readBytes();
+    }
+
+    /**
+     * 写数据到文件中
+     *
+     * @param dest 目标文件
+     * @param data 数据
+     * @return 目标文件
+     * @throws IORuntimeException IO异常
+     */
+    public static File writeBytes(byte[] data, File dest) throws IORuntimeException {
+        return writeBytes(data, dest, 0, data.length, false);
+    }
+
+    /**
+     * 写入数据到文件
+     *
+     * @param data     数据
+     * @param dest     目标文件
+     * @param off      数据开始位置
+     * @param len      数据长度
+     * @param isAppend 是否追加模式
+     * @return 目标文件
+     * @throws IORuntimeException IO异常
+     */
+    public static File writeBytes(byte[] data, File dest, int off, int len, boolean isAppend) throws IORuntimeException {
+        return FileWriter.create(dest).write(data, off, len, isAppend);
+    }
 }
