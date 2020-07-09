@@ -82,9 +82,10 @@ a143b181 LC <ahlc@sina.cn> on 2020/6/20 at 9:59
 ```
 
 release v0.2.0
-> 在Xcommits处 tag v0.2.0 release.
+> 在27commits处 tag v0.2.0 release.
 ```markdown
-TODO
+release v0.2.0
+67c69882 ahviplc <ahlc@sina.cn> on 2020/7/9 at 10:41
 ```
 
 release vx.x.x
