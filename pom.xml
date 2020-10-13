@@ -20,7 +20,7 @@
 
         <!--使用maven打包跳过test-->
         <skipTests>true</skipTests>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <lombok.version>1.18.12</lombok.version>
         <!-- 编译JDK版本versions -->
         <compile.version>8</compile.version>
