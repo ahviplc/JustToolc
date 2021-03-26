@@ -81,20 +81,42 @@ JustToolc的maven一行命令生成
 ```
 
 ## maven项目使用
-> TODO 待完成 现在还不支持.
+> 已支持.
+
+### 添加仓库
+> 添加下面的
+```xml
+<repositories>
+    <repository>
+        <id>ahviplc-maven-repo</id>
+        <url>https://raw.githubusercontent.com/ahviplc/maven-repository/master/repository</url>
+    </repository>
+</repositories>
+```
+> 或者添加如下,速度更快
+```xml
+<!--添加repositories 使用fastgit 速度更快 可解决Could not transfer artifact问题-->
+<repositories>
+    <repository>
+        <id>ahviplc-maven-repo</id>
+        <url>https://raw.fastgit.org/ahviplc/maven-repository/master/repository</url>
+    </repository>
+</repositories>
+```
+> 仓库配置完毕之后，直接引入依赖即可，依赖我的JustToolc包，就可以添加下面的依赖配置
 ```xml
 <!--全局使用-->
 <dependency>
     <groupId>com.lc</groupId>
-    <artifactId>\JustToolc</artifactId>
-    <version>0.1.0</version>
+    <artifactId>JustToolc</artifactId>
+    <version>0.2.0</version>
 </dependency>
 
 <!--使用范围只在test-->
 <dependency>
     <groupId>com.lc</groupId>
-    <artifactId>\JustToolc</artifactId>
-    <version>0.1.0</version>
+    <artifactId>JustToolc</artifactId>
+    <version>0.2.0</version>
     <scope>test</scope>
 </dependency>
 ```
